@@ -90,30 +90,16 @@
   .badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
     font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--sickly-bright);
-    background: rgba(122, 155, 78, 0.12);
-    border: 1px solid rgba(122, 155, 78, 0.3);
+    color: var(--muted);
+    background: rgba(148, 141, 120, 0.1);
+    border: 1px solid rgba(148, 141, 120, 0.25);
     padding: 0.32rem 0.8rem;
     border-radius: 3px;
     margin-bottom: 1.1rem;
-  }
-  .badge::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--sickly-bright);
-    box-shadow: 0 0 8px 1px var(--sickly-bright);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
   }
   h1 {
     font-family: "Staatliches", "Inter", sans-serif;
@@ -382,9 +368,6 @@
     font-weight: 600;
   }
   footer a:hover { text-decoration: underline; }
-  @media (prefers-reduced-motion: reduce) {
-    .badge::before, .pill::before { animation: none; }
-  }
 </style>
 </head>
 <body>
