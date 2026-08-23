@@ -7,13 +7,27 @@
 <style>
   :root {
     color-scheme: light dark;
-    --bg: #f4f5f7;
-    --text: #1a1d23;
+    --bg-1: #eef1f8;
+    --bg-2: #dde3f0;
+    --card: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(255, 255, 255, 0.9);
+    --text: #1a1d29;
+    --muted: #5b6172;
+    --accent: #4f6bf0;
+    --accent-2: #16a34a;
+    --shadow: 0 20px 50px -12px rgba(30, 41, 82, 0.25), 0 2px 8px rgba(30, 41, 82, 0.08);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0f1115;
-      --text: #e6e8eb;
+      --bg-1: #0b0d14;
+      --bg-2: #151a29;
+      --card: rgba(23, 27, 41, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #eef0f6;
+      --muted: #9098ae;
+      --accent: #7b93ff;
+      --accent-2: #4ade80;
+      --shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
     }
   }
   * { box-sizing: border-box; }
@@ -21,24 +35,103 @@
     margin: 0;
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    padding: 2rem 1rem;
-    background: var(--bg);
-    color: var(--text);
+    padding: 2rem 1.25rem;
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background:
+      radial-gradient(circle at 15% 10%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 45%),
+      radial-gradient(circle at 85% 90%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 45%),
+      linear-gradient(160deg, var(--bg-1), var(--bg-2));
+    background-attachment: fixed;
+  }
+  .card {
+    width: min(420px, 100%);
+    padding: 2rem 1.75rem 1.75rem;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    text-align: center;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    background: color-mix(in srgb, var(--accent-2) 14%, transparent);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  .badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-2) 60%, transparent);
+    animation: pulse 1.8s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent-2) 45%, transparent); }
+    100% { box-shadow: 0 0 0 8px transparent; }
   }
   h1 {
-    font-size: 1.1rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+  .frame-wrap {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.25);
+    line-height: 0;
+  }
+  iframe {
+    display: block;
+    width: 100%;
+    height: 260px;
+    border: 0;
+  }
+  footer {
+    margin-top: 1.25rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
     font-weight: 600;
-    margin: 0;
+  }
+  footer a:hover { text-decoration: underline; }
+  @media (prefers-reduced-motion: reduce) {
+    .badge::before { animation: none; }
   }
 </style>
 </head>
 <body>
-  <h1>Project Zomboid - Server Poxillo</h1>
-  <iframe src="https://supercraft.host/embed/server/pz-jzmarquez-com/" width="360" height="260" loading="lazy" style="border:0;border-radius:12px;max-width:100%" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" title="Live server status"></iframe>
+  <div class="card">
+    <span class="badge">Project Zomboid</span>
+    <h1>Server Poxillo</h1>
+    <p class="subtitle">Estado en vivo del servidor</p>
+    <div class="frame-wrap">
+      <iframe src="https://supercraft.host/embed/server/pz-jzmarquez-com/" loading="lazy" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" title="Live server status"></iframe>
+    </div>
+    <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
+  </div>
 </body>
 </html>
