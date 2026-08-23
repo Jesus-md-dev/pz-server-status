@@ -358,6 +358,43 @@
     color: var(--muted);
     margin-top: 0.1rem;
   }
+  .mods-warning {
+    margin: 0 0 0.7rem;
+    font-size: 0.76rem;
+    color: var(--rust-bright);
+    background: rgba(224, 112, 63, 0.1);
+    border: 1px solid rgba(224, 112, 63, 0.25);
+    border-radius: 6px;
+    padding: 0.5rem 0.6rem;
+  }
+  .mods-list {
+    list-style: none;
+    padding-left: 0;
+    max-height: 260px;
+    overflow-y: auto;
+  }
+  .mods-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.4rem 0;
+    border-top: 1px solid var(--inner-border);
+    font-size: 0.78rem;
+  }
+  .mods-list li:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
+  .mods-list li span { color: var(--text); }
+  .mods-list li code {
+    font-size: 0.68rem;
+    color: var(--muted);
+    background: var(--tag-bg);
+    padding: 0.08rem 0.35rem;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
 
   .actions {
     margin-top: 1.5rem;
@@ -430,7 +467,7 @@
 
       <div class="tags">
         <span class="tag">PVE</span>
-        <span class="tag">Vanilla</span>
+        <span class="tag">Modded</span>
         <span class="tag">Cooperativo</span>
       </div>
 
@@ -481,9 +518,42 @@
       </details>
 
       <details class="rules">
-        <summary>Mods</summary>
+        <summary>Mods (31)</summary>
         <div class="rules-body">
-          <p style="margin:0">Sin mods instalados — servidor 100% vanilla.</p>
+          <p class="mods-warning">⚠ Actualmente no están activos en el servidor (Mods/WorkshopItems vacío tras la migración) — pendiente de reinstalar desde el panel.</p>
+          <ul class="mods-list">
+            <li><span>Time-Period Accurate Music B42</span><code>3407139462</code></li>
+            <li><span>True Moozic B42+</span><code>3632610172</code></li>
+            <li><span>True Moozic: Video Game Mixtapes</span><code>3673701089</code></li>
+            <li><span>NeatUI Framework</span><code>3508537032</code></li>
+            <li><span>CleanUI</span><code>3437629766</code></li>
+            <li><span>Project Arcade</span><code>3645980077</code></li>
+            <li><span>Rain Cleans Blood</span><code>2956146279</code></li>
+            <li><span>Has Been Read</span><code>2544353492</code></li>
+            <li><span>KillCount</span><code>2553809727</code></li>
+            <li><span>Map Legend UI</span><code>2710167561</code></li>
+            <li><span>Skateboard!</span><code>3456675747</code></li>
+            <li><span>Video Game Consoles</span><code>2831786301</code></li>
+            <li><span>The Only Cure</span><code>3580276809</code></li>
+            <li><span>Spanish Male Voice Pack</span><code>3447058353</code></li>
+            <li><span>Spanish Female Voice Pack</span><code>3469194888</code></li>
+            <li><span>CartoonTV</span><code>2850170557</code></li>
+            <li><span>Military Tool Kit</span><code>2705406713</code></li>
+            <li><span>Red Library</span><code>3705029261</code></li>
+            <li><span>1967 Chevrolet Impala</span><code>3677217949</code></li>
+            <li><span>Furgonetas de España / Vans of Spain</span><code>2950529166</code></li>
+            <li><span>CNP España Mod</span><code>3645161115</code></li>
+            <li><span>Lifestyle: Hobbies</span><code>3403870858</code></li>
+            <li><span>Fichin Lifestyle Hobbies (traducción ES)</span><code>3784413438</code></li>
+            <li><span>Piano Music Lifestyle Addon</span><code>3261836947</code></li>
+            <li><span>Violin Music Lifestyle Addon</span><code>3177585116</code></li>
+            <li><span>Silent Hill Lifestyle Addon</span><code>3538308427</code></li>
+            <li><span>LifeStyle - Acoustic Guitar</span><code>3412944806</code></li>
+            <li><span>Lifestyle: Guts Theme</span><code>3093045288</code></li>
+            <li><span>LifeStyle: Guitar - The Last of Us</span><code>3421651510</code></li>
+            <li><span>[B42] Spanish Guitar Addon</span><code>3673794502</code></li>
+            <li><span>TrueMoozic Made in Spain</span><code>3715920784</code></li>
+          </ul>
         </div>
       </details>
 
