@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Server Poxillo - Estado</title>
+<meta name="description" content="Estado en directo del servidor de Project Zomboid Server Poxillo: jugadores conectados, dirección de conexión y reglas.">
+<meta property="og:title" content="Server Poxillo - Project Zomboid">
+<meta property="og:description" content="Estado en directo del servidor: jugadores conectados, dirección de conexión y reglas.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%9F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -191,6 +197,28 @@
     font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
     font-size: 0.82rem;
   }
+  .address-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+  .copy-btn {
+    font-family: inherit;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--inner-border);
+    border-radius: 4px;
+    padding: 0.18rem 0.45rem;
+    cursor: pointer;
+    transition: filter 0.15s ease;
+  }
+  .copy-btn:hover { filter: brightness(1.2); }
+  .copy-btn.copied { color: var(--sickly-bright); border-color: rgba(156, 196, 95, 0.4); }
 
   .player-list {
     list-style: none;
@@ -289,6 +317,27 @@
   .rules-body ul { margin: 0; padding-left: 1.1rem; }
   .rules-body li { margin-bottom: 0.35rem; }
   .rules-body li:last-child { margin-bottom: 0; }
+  .rules-body ul.roster {
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .rules-body ul.roster li {
+    margin-bottom: 0;
+    font-size: 0.76rem;
+    font-weight: 600;
+    background: var(--tag-bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+  }
+  .rules-body code {
+    background: var(--tag-bg);
+    padding: 0.08rem 0.35rem;
+    border-radius: 3px;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  }
 
   .actions {
     margin-top: 1.5rem;
@@ -358,7 +407,10 @@
         </div>
         <div>
           <div class="info-label">Dirección</div>
-          <div class="info-value mono" id="address">—</div>
+          <div class="address-row">
+            <span class="info-value mono" id="address">—</span>
+            <button class="copy-btn" id="copyBtn" type="button" title="Copiar dirección">Copiar</button>
+          </div>
         </div>
       </div>
 
@@ -394,6 +446,29 @@
           </ul>
         </div>
       </details>
+
+      <details class="rules">
+        <summary>Cómo unirse</summary>
+        <div class="rules-body">
+          <ul>
+            <li>Abre Project Zomboid → <strong>Unirse</strong> → <strong>Unirse por IP</strong>.</li>
+            <li>IP: <code>54.38.81.169</code> · Puerto: <code>11400</code></li>
+            <li>Pide la contraseña del servidor a un administrador.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="rules">
+        <summary>Supervivientes registrados (18)</summary>
+        <div class="rules-body">
+          <ul class="roster">
+            <li>Jezu</li><li>Chocapic9000</li><li>SERGIO</li><li>RafaZD</li>
+            <li>Sheratan</li><li>SeyXmo</li><li>alexu</li><li>Claus</li>
+            <li>Du Lidl</li><li>D Lidl</li><li>diegogm18</li><li>SeyxmoXIII</li>
+            <li>Rainbowtrash</li><li>CHatarras</li><li>Moiseh</li><li>Dea</li><li>Netsu</li>
+          </ul>
+        </div>
+      </details>
     </div>
 
     <div class="actions">
@@ -413,6 +488,24 @@
   const playerList = document.getElementById('playerList');
   const playerEmpty = document.getElementById('playerEmpty');
   const updated = document.getElementById('updated');
+  const copyBtn = document.getElementById('copyBtn');
+
+  copyBtn.addEventListener('click', async () => {
+    const text = address.textContent;
+    if (!text || text === '—') return;
+    try {
+      await navigator.clipboard.writeText(text);
+      copyBtn.textContent = '¡Copiado!';
+      copyBtn.classList.add('copied');
+      setTimeout(() => {
+        copyBtn.textContent = 'Copiar';
+        copyBtn.classList.remove('copied');
+      }, 1500);
+    } catch (e) {
+      copyBtn.textContent = 'Error';
+      setTimeout(() => { copyBtn.textContent = 'Copiar'; }, 1500);
+    }
+  });
 
   function timeAgo(iso) {
     if (!iso) return '—';
