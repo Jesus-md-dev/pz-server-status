@@ -14,12 +14,17 @@
     --bg-1: #14140f;
     --panel: #1b1c16;
     --panel-border: #33352a;
+    --inner: #161d2e;
+    --inner-border: #2a3450;
     --rust: #b5502f;
     --rust-bright: #e0703f;
     --sickly: #7a9b4e;
     --sickly-bright: #9cc45f;
+    --red: #e05a5a;
     --text: #e9e6d8;
     --muted: #948d78;
+    --tag-bg: #232b45;
+    --tag-text: #a9b3d6;
     --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5);
   }
   * { box-sizing: border-box; }
@@ -116,20 +121,92 @@
     margin: 0 0 1.6rem;
     letter-spacing: 0.01em;
   }
-  .frame-wrap {
+
+  .status-panel {
+    background: var(--inner);
+    border: 1px solid var(--inner-border);
     border-radius: 8px;
-    overflow: hidden;
-    line-height: 0;
-    background: transparent;
+    padding: 1.1rem 1.2rem 1.25rem;
+    text-align: left;
+    box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.6);
   }
-  iframe {
-    display: block;
-    width: 100%;
-    height: 196px;
-    border: 0;
-    border-radius: 8px;
-    background: transparent;
+  .status-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
   }
+  .server-name {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+  .pill.online { color: var(--sickly-bright); background: rgba(156, 196, 95, 0.14); }
+  .pill.online::before { background: var(--sickly-bright); box-shadow: 0 0 6px 1px var(--sickly-bright); }
+  .pill.offline { color: var(--red); background: rgba(224, 90, 90, 0.14); }
+  .pill.offline::before { background: var(--red); }
+  .pill.checking { color: var(--muted); background: rgba(148, 141, 120, 0.12); }
+  .pill.checking::before { background: var(--muted); }
+
+  .info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+  }
+  .info-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.2rem;
+  }
+  .info-value {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--text);
+    word-break: break-word;
+  }
+  .info-value.mono {
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    font-size: 0.82rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    padding: 0.25rem 0.55rem;
+    border-radius: 4px;
+  }
+
   footer {
     margin-top: 1.4rem;
     font-size: 0.76rem;
@@ -143,7 +220,7 @@
   }
   footer a:hover { text-decoration: underline; }
   @media (prefers-reduced-motion: reduce) {
-    .badge::before { animation: none; }
+    .badge::before, .pill::before { animation: none; }
   }
 </style>
 </head>
@@ -152,10 +229,61 @@
     <span class="badge">Project Zomboid</span>
     <h1>Server Poxillo</h1>
     <p class="subtitle">Estado del servidor en directo</p>
-    <div class="frame-wrap">
-      <iframe src="https://supercraft.host/embed/server/pz-jzmarquez-com/" loading="lazy" scrolling="no" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" title="Estado en directo del servidor"></iframe>
+
+    <div class="status-panel">
+      <div class="status-panel-header">
+        <span class="server-name">Server Poxillo</span>
+        <span class="pill checking" id="pill">Comprobando…</span>
+      </div>
+      <div class="info-row">
+        <div>
+          <div class="info-label">Jugadores</div>
+          <div class="info-value" id="players">—</div>
+        </div>
+        <div>
+          <div class="info-label">Dirección</div>
+          <div class="info-value mono" id="address">—</div>
+        </div>
+      </div>
+      <div class="tags">
+        <span class="tag">PVE</span>
+        <span class="tag">Vanilla</span>
+        <span class="tag">Cooperativo</span>
+      </div>
     </div>
+
     <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
   </div>
+
+<script>
+  const pill = document.getElementById('pill');
+  const players = document.getElementById('players');
+  const address = document.getElementById('address');
+
+  async function poll() {
+    try {
+      const res = await fetch('/.netlify/functions/status', { cache: 'no-store' });
+      const data = await res.json();
+
+      pill.className = 'pill ' + (data.online ? 'online' : 'offline');
+      pill.textContent = data.online ? 'Online' : 'Offline';
+      address.textContent = data.address || '—';
+
+      if (data.online && data.players) {
+        players.textContent = data.players.count + ' / 10';
+      } else if (data.online) {
+        players.textContent = '—';
+      } else {
+        players.textContent = '0 / 10';
+      }
+    } catch (e) {
+      pill.className = 'pill offline';
+      pill.textContent = 'Sin datos';
+    }
+  }
+
+  poll();
+  setInterval(poll, 5000);
+</script>
 </body>
 </html>
