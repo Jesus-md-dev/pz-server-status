@@ -126,7 +126,10 @@ function parsePlayers(body) {
 }
 
 exports.handler = async () => {
-  const online = await checkOnline(GAME_HOST, GAME_PORT);
+  // El puerto de juego (GAME_PORT) es UDP: una conexion TCP a el siempre
+  // falla aunque el servidor este arriba. El puerto RCON si es TCP, asi que
+  // se usa para detectar online/offline (igual que hacia el script local).
+  const online = await checkOnline(RCON_HOST, RCON_PORT);
 
   let players = null;
   if (online) {
