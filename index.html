@@ -374,19 +374,34 @@
     overflow-y: auto;
   }
   .mods-list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.6rem;
-    padding: 0.4rem 0;
     border-top: 1px solid var(--inner-border);
     font-size: 0.78rem;
   }
   .mods-list li:first-child {
-    padding-top: 0;
     border-top: none;
   }
-  .mods-list li span { color: var(--text); }
+  .mods-list li a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.4rem 0.3rem;
+    margin: 0 -0.3rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s ease;
+  }
+  .mods-list li a:hover {
+    background: rgba(224, 112, 63, 0.08);
+  }
+  .mods-list li a:hover span {
+    color: var(--rust-bright);
+  }
+  .mods-list li span {
+    color: var(--text);
+    transition: color 0.15s ease;
+  }
   .mods-list li code {
     font-size: 0.68rem;
     color: var(--muted);
@@ -520,39 +535,38 @@
       <details class="rules">
         <summary>Mods (31)</summary>
         <div class="rules-body">
-          <p class="mods-warning">⏳ Reinstalación en curso: el servidor está descargando estos 31 mods de Steam Workshop tras la migración.</p>
           <ul class="mods-list">
-            <li><span>Time-Period Accurate Music B42</span><code>3407139462</code></li>
-            <li><span>True Moozic B42+</span><code>3632610172</code></li>
-            <li><span>True Moozic: Video Game Mixtapes</span><code>3673701089</code></li>
-            <li><span>NeatUI Framework</span><code>3508537032</code></li>
-            <li><span>CleanUI</span><code>3437629766</code></li>
-            <li><span>Project Arcade</span><code>3645980077</code></li>
-            <li><span>Rain Cleans Blood</span><code>2956146279</code></li>
-            <li><span>Has Been Read</span><code>2544353492</code></li>
-            <li><span>KillCount</span><code>2553809727</code></li>
-            <li><span>Map Legend UI</span><code>2710167561</code></li>
-            <li><span>Skateboard!</span><code>3456675747</code></li>
-            <li><span>Video Game Consoles</span><code>2831786301</code></li>
-            <li><span>The Only Cure</span><code>3580276809</code></li>
-            <li><span>Spanish Male Voice Pack</span><code>3447058353</code></li>
-            <li><span>Spanish Female Voice Pack</span><code>3469194888</code></li>
-            <li><span>CartoonTV</span><code>2850170557</code></li>
-            <li><span>Military Tool Kit</span><code>2705406713</code></li>
-            <li><span>Red Library</span><code>3705029261</code></li>
-            <li><span>1967 Chevrolet Impala</span><code>3677217949</code></li>
-            <li><span>Furgonetas de España / Vans of Spain</span><code>2950529166</code></li>
-            <li><span>CNP España Mod</span><code>3645161115</code></li>
-            <li><span>Lifestyle: Hobbies</span><code>3403870858</code></li>
-            <li><span>Fichin Lifestyle Hobbies (traducción ES)</span><code>3784413438</code></li>
-            <li><span>Piano Music Lifestyle Addon</span><code>3261836947</code></li>
-            <li><span>Violin Music Lifestyle Addon</span><code>3177585116</code></li>
-            <li><span>Silent Hill Lifestyle Addon</span><code>3538308427</code></li>
-            <li><span>LifeStyle - Acoustic Guitar</span><code>3412944806</code></li>
-            <li><span>Lifestyle: Guts Theme</span><code>3093045288</code></li>
-            <li><span>LifeStyle: Guitar - The Last of Us</span><code>3421651510</code></li>
-            <li><span>[B42] Spanish Guitar Addon</span><code>3673794502</code></li>
-            <li><span>TrueMoozic Made in Spain</span><code>3715920784</code></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3407139462" target="_blank" rel="noopener"><span>Time-Period Accurate Music B42</span><code>3407139462</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3632610172" target="_blank" rel="noopener"><span>True Moozic B42+</span><code>3632610172</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3673701089" target="_blank" rel="noopener"><span>True Moozic: Video Game Mixtapes</span><code>3673701089</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032" target="_blank" rel="noopener"><span>NeatUI Framework</span><code>3508537032</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3437629766" target="_blank" rel="noopener"><span>CleanUI</span><code>3437629766</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3645980077" target="_blank" rel="noopener"><span>Project Arcade</span><code>3645980077</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2956146279" target="_blank" rel="noopener"><span>Rain Cleans Blood</span><code>2956146279</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2544353492" target="_blank" rel="noopener"><span>Has Been Read</span><code>2544353492</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2553809727" target="_blank" rel="noopener"><span>KillCount</span><code>2553809727</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2710167561" target="_blank" rel="noopener"><span>Map Legend UI</span><code>2710167561</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3456675747" target="_blank" rel="noopener"><span>Skateboard!</span><code>3456675747</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2831786301" target="_blank" rel="noopener"><span>Video Game Consoles</span><code>2831786301</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3580276809" target="_blank" rel="noopener"><span>The Only Cure</span><code>3580276809</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3447058353" target="_blank" rel="noopener"><span>Spanish Male Voice Pack</span><code>3447058353</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3469194888" target="_blank" rel="noopener"><span>Spanish Female Voice Pack</span><code>3469194888</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2850170557" target="_blank" rel="noopener"><span>CartoonTV</span><code>2850170557</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2705406713" target="_blank" rel="noopener"><span>Military Tool Kit</span><code>2705406713</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3705029261" target="_blank" rel="noopener"><span>Red Library</span><code>3705029261</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3677217949" target="_blank" rel="noopener"><span>1967 Chevrolet Impala</span><code>3677217949</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2950529166" target="_blank" rel="noopener"><span>Furgonetas de España / Vans of Spain</span><code>2950529166</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3645161115" target="_blank" rel="noopener"><span>CNP España Mod</span><code>3645161115</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3403870858" target="_blank" rel="noopener"><span>Lifestyle: Hobbies</span><code>3403870858</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3784413438" target="_blank" rel="noopener"><span>Fichin Lifestyle Hobbies (traducción ES)</span><code>3784413438</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3261836947" target="_blank" rel="noopener"><span>Piano Music Lifestyle Addon</span><code>3261836947</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3177585116" target="_blank" rel="noopener"><span>Violin Music Lifestyle Addon</span><code>3177585116</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3538308427" target="_blank" rel="noopener"><span>Silent Hill Lifestyle Addon</span><code>3538308427</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3412944806" target="_blank" rel="noopener"><span>LifeStyle - Acoustic Guitar</span><code>3412944806</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3093045288" target="_blank" rel="noopener"><span>Lifestyle: Guts Theme</span><code>3093045288</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3421651510" target="_blank" rel="noopener"><span>LifeStyle: Guitar - The Last of Us</span><code>3421651510</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3673794502" target="_blank" rel="noopener"><span>[B42] Spanish Guitar Addon</span><code>3673794502</code></a></li>
+            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3715920784" target="_blank" rel="noopener"><span>TrueMoozic Made in Spain</span><code>3715920784</code></a></li>
           </ul>
         </div>
       </details>
