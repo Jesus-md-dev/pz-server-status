@@ -25,6 +25,7 @@
     --muted: #948d78;
     --tag-bg: #232b45;
     --tag-text: #a9b3d6;
+    --discord: #5865f2;
     --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8), 0 4px 12px rgba(0, 0, 0, 0.5);
   }
   * { box-sizing: border-box; }
@@ -191,10 +192,43 @@
     font-size: 0.82rem;
   }
 
+  .player-list {
+    list-style: none;
+    margin: 0.6rem 0 0;
+    padding: 0.7rem 0 0;
+    border-top: 1px solid var(--inner-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .player-list li {
+    font-size: 0.85rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+  .player-list li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sickly-bright);
+    flex: 0 0 auto;
+  }
+  .player-empty {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0.6rem 0 0;
+    padding-top: 0.7rem;
+    border-top: 1px solid var(--inner-border);
+  }
+
   .tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    margin-top: 1rem;
   }
   .tag {
     font-size: 0.68rem;
@@ -207,8 +241,90 @@
     border-radius: 4px;
   }
 
+  .details-grid {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--inner-border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+  }
+  .details-grid .info-label { margin-bottom: 0.15rem; }
+  .details-grid .info-value { font-size: 0.85rem; font-weight: 600; }
+
+  .rules {
+    margin-top: 1.25rem;
+    text-align: left;
+  }
+  .rules summary {
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .rules summary::-webkit-details-marker { display: none; }
+  .rules summary::before {
+    content: "▸";
+    transition: transform 0.15s ease;
+    color: var(--muted);
+  }
+  .rules[open] summary::before { transform: rotate(90deg); }
+  .rules summary:hover { color: var(--text); }
+  .rules-body {
+    margin: 0.7rem 0 0;
+    padding: 0.9rem 1rem;
+    background: var(--inner);
+    border: 1px solid var(--inner-border);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .rules-body ul { margin: 0; padding-left: 1.1rem; }
+  .rules-body li { margin-bottom: 0.35rem; }
+  .rules-body li:last-child { margin-bottom: 0; }
+
+  .actions {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 0.6rem;
+  }
+  .btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.65rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn:active { transform: scale(0.98); }
+  .btn.discord { background: var(--discord); color: #fff; }
+  .btn.secondary {
+    background: var(--tag-bg);
+    color: var(--text);
+    border: 1px solid var(--inner-border);
+  }
+
+  .updated {
+    margin-top: 1rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
   footer {
-    margin-top: 1.4rem;
+    margin-top: 1.25rem;
     font-size: 0.76rem;
     color: var(--muted);
     letter-spacing: 0.01em;
@@ -245,12 +361,47 @@
           <div class="info-value mono" id="address">—</div>
         </div>
       </div>
+
+      <ul class="player-list" id="playerList" style="display:none"></ul>
+      <p class="player-empty" id="playerEmpty" style="display:none">Nadie conectado ahora mismo</p>
+
       <div class="tags">
         <span class="tag">PVE</span>
         <span class="tag">Vanilla</span>
         <span class="tag">Cooperativo</span>
       </div>
+
+      <div class="details-grid">
+        <div>
+          <div class="info-label">Mapa</div>
+          <div class="info-value">Muldraugh, KY</div>
+        </div>
+        <div>
+          <div class="info-label">Versión</div>
+          <div class="info-value">Stable · build 24775771</div>
+        </div>
+      </div>
+
+      <details class="rules">
+        <summary>Reglas del servidor</summary>
+        <div class="rules-body">
+          <ul>
+            <li>PVP desactivado en todo el servidor: no se puede dañar a otros jugadores.</li>
+            <li>Respeta los refugios (safehouses) de otros jugadores: no se puede entrar, saquear ni prender fuego a refugios ajenos.</li>
+            <li>Sé amable en el chat, nada de insultos ni spam.</li>
+            <li>No se permite el griefing (destruir bases, robar recursos comunes, bloquear puertas ajenas, etc.).</li>
+            <li>El botín reaparece cada 7 días; evita acumular todo en un solo refugio para que haya para todos.</li>
+          </ul>
+        </div>
+      </details>
     </div>
+
+    <div class="actions">
+      <a class="btn discord" href="https://discord.gg/xgFmnhnsZ4" target="_blank" rel="noopener">Discord</a>
+      <a class="btn secondary" href="https://supercraft.host/s/pz-jzmarquez-com/" target="_blank" rel="noopener">Página pública</a>
+    </div>
+
+    <p class="updated" id="updated">—</p>
 
     <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
   </div>
@@ -259,6 +410,19 @@
   const pill = document.getElementById('pill');
   const players = document.getElementById('players');
   const address = document.getElementById('address');
+  const playerList = document.getElementById('playerList');
+  const playerEmpty = document.getElementById('playerEmpty');
+  const updated = document.getElementById('updated');
+
+  function timeAgo(iso) {
+    if (!iso) return '—';
+    const secs = Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 1000));
+    if (secs < 5) return 'justo ahora';
+    if (secs < 60) return `hace ${secs}s`;
+    return `hace ${Math.round(secs / 60)}min`;
+  }
+
+  let lastCheckedAt = null;
 
   async function poll() {
     try {
@@ -268,13 +432,31 @@
       pill.className = 'pill ' + (data.online ? 'online' : 'offline');
       pill.textContent = data.online ? 'Online' : 'Offline';
       address.textContent = data.address || '—';
+      lastCheckedAt = data.checkedAt;
 
+      playerList.innerHTML = '';
       if (data.online && data.players) {
         players.textContent = data.players.count + ' / 10';
+        if (data.players.count > 0) {
+          playerList.style.display = 'flex';
+          playerEmpty.style.display = 'none';
+          data.players.names.forEach((name) => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            playerList.appendChild(li);
+          });
+        } else {
+          playerList.style.display = 'none';
+          playerEmpty.style.display = 'block';
+        }
       } else if (data.online) {
         players.textContent = '—';
+        playerList.style.display = 'none';
+        playerEmpty.style.display = 'none';
       } else {
         players.textContent = '0 / 10';
+        playerList.style.display = 'none';
+        playerEmpty.style.display = 'none';
       }
     } catch (e) {
       pill.className = 'pill offline';
@@ -282,8 +464,13 @@
     }
   }
 
+  function tickUpdated() {
+    updated.textContent = 'Actualizado ' + timeAgo(lastCheckedAt);
+  }
+
   poll();
   setInterval(poll, 5000);
+  setInterval(tickUpdated, 1000);
 </script>
 </body>
 </html>
