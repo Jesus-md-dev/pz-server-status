@@ -366,12 +366,6 @@
     border: 1px solid var(--inner-border);
   }
 
-  .updated {
-    margin-top: 1rem;
-    font-size: 0.72rem;
-    color: var(--muted);
-  }
-
   footer {
     margin-top: 1.25rem;
     font-size: 0.76rem;
@@ -476,8 +470,6 @@
       <a class="btn secondary" href="https://supercraft.host/s/pz-jzmarquez-com/" target="_blank" rel="noopener">Página pública</a>
     </div>
 
-    <p class="updated" id="updated">—</p>
-
     <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
   </div>
 
@@ -487,7 +479,6 @@
   const address = document.getElementById('address');
   const playerList = document.getElementById('playerList');
   const playerEmpty = document.getElementById('playerEmpty');
-  const updated = document.getElementById('updated');
   const copyBtn = document.getElementById('copyBtn');
 
   copyBtn.addEventListener('click', async () => {
@@ -507,15 +498,6 @@
     }
   });
 
-  function timeAgo(iso) {
-    if (!iso) return '—';
-    const mins = Math.floor((Date.now() - new Date(iso).getTime()) / 60000);
-    if (mins < 1) return 'hace menos de 1min';
-    return `hace ${mins}min`;
-  }
-
-  let lastCheckedAt = null;
-
   async function poll() {
     try {
       const res = await fetch('/.netlify/functions/status', { cache: 'no-store' });
@@ -524,7 +506,6 @@
       pill.className = 'pill ' + (data.online ? 'online' : 'offline');
       pill.textContent = data.online ? 'Online' : 'Offline';
       address.textContent = data.address || '—';
-      lastCheckedAt = data.checkedAt;
 
       playerList.innerHTML = '';
       if (data.online && data.players) {
@@ -556,13 +537,8 @@
     }
   }
 
-  function tickUpdated() {
-    updated.textContent = 'Actualizado ' + timeAgo(lastCheckedAt);
-  }
-
   poll();
   setInterval(poll, 300000);
-  setInterval(tickUpdated, 5000);
 </script>
 </body>
 </html>
