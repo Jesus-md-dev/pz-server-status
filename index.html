@@ -117,18 +117,17 @@
     letter-spacing: 0.01em;
   }
   .frame-wrap {
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid var(--panel-border);
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3), 0 10px 28px -10px rgba(0, 0, 0, 0.6);
     line-height: 0;
-    background: #000;
+    background: transparent;
   }
   iframe {
     display: block;
     width: 100%;
-    height: 260px;
+    height: 232px;
     border: 0;
+    background: transparent;
   }
   footer {
     margin-top: 1.4rem;
@@ -153,7 +152,7 @@
     <h1>Server Poxillo</h1>
     <p class="subtitle">Estado del servidor en directo</p>
     <div class="frame-wrap">
-      <iframe src="https://supercraft.host/embed/server/pz-jzmarquez-com/" loading="lazy" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" title="Estado en directo del servidor"></iframe>
+      <iframe src="https://supercraft.host/embed/server/pz-jzmarquez-com/" loading="lazy" scrolling="no" sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox" title="Estado en directo del servidor"></iframe>
     </div>
     <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
   </div>
