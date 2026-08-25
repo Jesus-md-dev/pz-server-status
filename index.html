@@ -328,36 +328,6 @@
     border-radius: 3px;
     font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   }
-  .rules-body ul.changes {
-    list-style: none;
-    padding-left: 0;
-  }
-  .rules-body ul.changes li {
-    padding: 0.5rem 0;
-    border-top: 1px solid var(--inner-border);
-  }
-  .rules-body ul.changes li:first-child {
-    padding-top: 0;
-    border-top: none;
-  }
-  .change-setting {
-    display: block;
-    font-weight: 700;
-    font-size: 0.8rem;
-    color: var(--text);
-  }
-  .change-values {
-    display: block;
-    font-size: 0.76rem;
-    color: var(--muted);
-    margin-top: 0.1rem;
-  }
-  .change-note {
-    display: block;
-    font-size: 0.76rem;
-    color: var(--muted);
-    margin-top: 0.1rem;
-  }
   .config-group + .config-group {
     margin-top: 1rem;
     padding-top: 0.9rem;
@@ -385,6 +355,12 @@
     font-size: 0.78rem;
   }
   .config-list li span { color: var(--muted); }
+  .config-list li span em {
+    font-style: normal;
+    color: var(--rust-bright);
+    font-size: 0.68rem;
+    margin-left: 0.2rem;
+  }
   .config-list li strong {
     color: var(--text);
     font-weight: 600;
@@ -608,25 +584,6 @@
       </details>
 
       <details class="rules">
-        <summary>Cambios respecto a vanilla</summary>
-        <div class="rules-body">
-          <ul class="changes" id="changesList">
-            <li><span class="change-setting">PVP</span><span class="change-values"><code>true</code> → <code>false</code></span><span class="change-note">PvP desactivado</span></li>
-            <li><span class="change-setting">PlayerSafehouse</span><span class="change-values"><code>false</code> → <code>true</code></span><span class="change-note">los jugadores pueden reclamar refugios</span></li>
-            <li><span class="change-setting">SafehouseAllowTrepass</span><span class="change-values"><code>true</code> → <code>false</code></span><span class="change-note">no se puede entrar a refugios ajenos sin invitación</span></li>
-            <li><span class="change-setting">SafehouseAllowFire</span><span class="change-values"><code>true</code> → <code>false</code></span><span class="change-note">el fuego no daña los refugios</span></li>
-            <li><span class="change-setting">SafehouseAllowLoot</span><span class="change-values"><code>true</code> → <code>false</code></span><span class="change-note">no se puede robar de refugios ajenos</span></li>
-            <li><span class="change-setting">SafehouseAllowNonResidential</span><span class="change-values"><code>false</code> → <code>true</code></span><span class="change-note">se pueden reclamar edificios no residenciales</span></li>
-            <li><span class="change-setting">SleepAllowed</span><span class="change-values"><code>false</code> → <code>true</code></span><span class="change-note">dormir habilitado</span></li>
-            <li><span class="change-setting">BackupsPeriod</span><span class="change-values"><code>0</code> → <code>60</code></span><span class="change-note">backup automático cada 60 min</span></li>
-            <li><span class="change-setting">HoursForLootRespawn</span><span class="change-values"><code>0</code> → <code>168</code></span><span class="change-note">el loot se regenera cada semana</span></li>
-            <li><span class="change-setting">MultiHitZombies</span><span class="change-values"><code>false</code> → <code>true</code></span><span class="change-note">un golpe puede alcanzar a varios zombis</span></li>
-            <li><span class="change-setting">MinutesPerPage</span><span class="change-values"><code>2.0</code> → <code>0.1</code></span><span class="change-note">lectura de libros de habilidad ~20x más rápida</span></li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="rules">
         <summary>Configuración del servidor</summary>
         <div class="rules-body">
           <div class="config-group">
@@ -636,24 +593,24 @@
               <li><span>Semilla del mapa</span><strong class="mono">WVPRSdwloeUSifrw</strong></li>
               <li><span>Chat de voz</span><strong>Activado (10–300 casillas)</strong></li>
               <li><span>Facciones</span><strong>Activadas</strong></li>
-              <li><span>Copias de seguridad</span><strong>Cada 60 min · 5 más recientes</strong></li>
+              <li><span>Copias de seguridad <em>(vs vanilla)</em></span><strong>Cada 60 min · 5 más recientes</strong></li>
             </ul>
           </div>
           <div class="config-group">
             <h4>PVP y combate</h4>
             <ul class="config-list">
-              <li><span>PVP</span><strong>Desactivado</strong></li>
-              <li><span>Multi-hit de zombis</span><strong>Activado</strong></li>
+              <li><span>PVP <em>(vs vanilla)</em></span><strong>Desactivado</strong></li>
+              <li><span>Multi-hit de zombis <em>(vs vanilla)</em></span><strong>Activado</strong></li>
             </ul>
           </div>
           <div class="config-group">
             <h4>Refugios</h4>
             <ul class="config-list">
-              <li><span>Reclamables por jugadores</span><strong>Sí</strong></li>
-              <li><span>Edificios no residenciales</span><strong>Sí</strong></li>
-              <li><span>Entrada sin invitación</span><strong>No</strong></li>
-              <li><span>Fuego daña refugios</span><strong>No</strong></li>
-              <li><span>Robar en refugios ajenos</span><strong>No</strong></li>
+              <li><span>Reclamables por jugadores <em>(vs vanilla)</em></span><strong>Sí</strong></li>
+              <li><span>Edificios no residenciales <em>(vs vanilla)</em></span><strong>Sí</strong></li>
+              <li><span>Entrada sin invitación <em>(vs vanilla)</em></span><strong>No</strong></li>
+              <li><span>Fuego daña refugios <em>(vs vanilla)</em></span><strong>No</strong></li>
+              <li><span>Robar en refugios ajenos <em>(vs vanilla)</em></span><strong>No</strong></li>
               <li><span>Reaparecer en tu refugio</span><strong>Sí</strong></li>
               <li><span>Eliminación por inactividad</span><strong>144h sin visitar</strong></li>
             </ul>
@@ -661,9 +618,9 @@
           <div class="config-group">
             <h4>Supervivencia</h4>
             <ul class="config-list">
-              <li><span>Dormir</span><strong>Permitido (no obligatorio)</strong></li>
-              <li><span>Reaparición de botín</span><strong>Cada 7 días</strong></li>
-              <li><span>Lectura de libros de habilidad</span><strong>Acelerada</strong></li>
+              <li><span>Dormir <em>(vs vanilla)</em></span><strong>Permitido (no obligatorio)</strong></li>
+              <li><span>Reaparición de botín <em>(vs vanilla)</em></span><strong>Cada 7 días</strong></li>
+              <li><span>Lectura de libros de habilidad <em>(vs vanilla)</em></span><strong>Acelerada (0.1 min/página)</strong></li>
             </ul>
           </div>
         </div>
