@@ -3,17 +3,44 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Server Poxillo - Estado</title>
-<meta name="description" content="Estado en directo del servidor de Project Zomboid Server Poxillo: jugadores conectados, dirección de conexión y reglas.">
+<title>Server Poxillo - Servidor de Project Zomboid en directo</title>
+<meta name="description" content="Estado en directo del servidor de Project Zomboid Server Poxillo: jugadores conectados, dirección de conexión, mods, reglas y cómo unirte.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pz-server-status.netlify.app/">
+
 <meta property="og:title" content="Server Poxillo - Project Zomboid">
-<meta property="og:description" content="Estado en directo del servidor: jugadores conectados, dirección de conexión y reglas.">
+<meta property="og:description" content="Estado en directo del servidor: jugadores conectados, dirección de conexión, mods y reglas.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://pz-server-status.netlify.app/">
+<meta property="og:image" content="https://pz-server-status.netlify.app/spiffo.png">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Server Poxillo">
+
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Server Poxillo - Project Zomboid">
+<meta name="twitter:description" content="Estado en directo del servidor: jugadores conectados, dirección de conexión, mods y reglas.">
+<meta name="twitter:image" content="https://pz-server-status.netlify.app/spiffo.png">
+
 <link rel="icon" type="image/png" href="/spiffo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Server Poxillo - Estado del servidor de Project Zomboid",
+  "description": "Estado en directo del servidor de Project Zomboid Server Poxillo: jugadores conectados, dirección de conexión, mods, reglas y cómo unirte.",
+  "url": "https://pz-server-status.netlify.app/",
+  "inLanguage": "es",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Server Poxillo",
+    "url": "https://pz-server-status.netlify.app/"
+  }
+}
+</script>
 </head>
 <body>
   <div class="card">
@@ -24,7 +51,7 @@
 
     <div class="status-panel">
       <div class="status-panel-header">
-        <span class="server-name" id="serverName">—</span>
+        <span class="server-name" id="serverName">Server Poxillo</span>
         <span class="pill checking" id="pill">Comprobando…</span>
       </div>
       <div class="info-row">
@@ -53,25 +80,35 @@
       <div class="details-grid">
         <div>
           <div class="info-label">Mapa</div>
-          <div class="info-value" id="mapValue">—</div>
+          <div class="info-value" id="mapValue">Muldraugh, KY</div>
         </div>
         <div>
           <div class="info-label">Versión</div>
-          <div class="info-value" id="versionValue">—</div>
+          <div class="info-value" id="versionValue">Stable · build 24775771</div>
         </div>
       </div>
 
       <details class="rules">
         <summary>Reglas del servidor</summary>
         <div class="rules-body">
-          <ul id="rulesList"></ul>
+          <ul>
+            <li>PVP desactivado en todo el servidor: no se puede dañar a otros jugadores.</li>
+            <li>Respeta los refugios (safehouses) de otros jugadores: no se puede entrar, saquear ni prender fuego a refugios ajenos.</li>
+            <li>Sé amable en el chat, nada de insultos ni spam.</li>
+            <li>No se permite el griefing (destruir bases, robar recursos comunes, bloquear puertas ajenas, etc.).</li>
+            <li>El botín reaparece cada 7 días; evita acumular todo en un solo refugio para que haya para todos.</li>
+          </ul>
         </div>
       </details>
 
       <details class="rules">
         <summary>Cómo unirse</summary>
         <div class="rules-body">
-          <ul id="howToJoinList"></ul>
+          <ul>
+            <li>Abre Project Zomboid → <strong>Unirse</strong> → <strong>Unirse por IP</strong>.</li>
+            <li>IP: <code>54.38.81.169</code> · Puerto: <code>11400</code></li>
+            <li>O usa el botón <strong>"Unirse ahora"</strong> de abajo para conectar directamente desde Steam.</li>
+          </ul>
         </div>
       </details>
 
@@ -95,11 +132,11 @@
       </details>
     </div>
 
-    <a class="btn join-btn" href="#" id="joinBtn">▶ Unirse ahora</a>
+    <a class="btn join-btn" href="steam://connect/54.38.81.169:11400" id="joinBtn">▶ Unirse ahora</a>
 
     <div class="actions">
-      <a class="btn discord" href="#" id="discordBtn" target="_blank" rel="noopener">Discord</a>
-      <a class="btn secondary" href="#" id="publicPageBtn" target="_blank" rel="noopener">Página pública</a>
+      <a class="btn discord" href="https://discord.gg/xgFmnhnsZ4" id="discordBtn" target="_blank" rel="noopener">Discord</a>
+      <a class="btn secondary" href="https://supercraft.host/s/pz-jzmarquez-com/" id="publicPageBtn" target="_blank" rel="noopener">Página pública</a>
     </div>
 
     <div class="actions">

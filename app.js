@@ -8,12 +8,6 @@ function renderStaticContent() {
   document.getElementById('discordBtn').href = SERVER.discordUrl;
   document.getElementById('publicPageBtn').href = SERVER.publicPageUrl;
 
-  document.getElementById('rulesList').innerHTML =
-    RULES.map((r) => `<li>${r}</li>`).join('');
-
-  document.getElementById('howToJoinList').innerHTML =
-    HOW_TO_JOIN.map((r) => `<li>${r}</li>`).join('');
-
   document.getElementById('rosterSummary').textContent = `Supervivientes registrados (${ROSTER.length})`;
   document.getElementById('rosterList').innerHTML =
     ROSTER.map((name) => `<li>${name}</li>`).join('');

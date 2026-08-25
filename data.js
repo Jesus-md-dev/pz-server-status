@@ -10,20 +10,6 @@ const SERVER = {
   publicPageUrl: 'https://supercraft.host/s/pz-jzmarquez-com/',
 };
 
-const RULES = [
-  'PVP desactivado en todo el servidor: no se puede dañar a otros jugadores.',
-  'Respeta los refugios (safehouses) de otros jugadores: no se puede entrar, saquear ni prender fuego a refugios ajenos.',
-  'Sé amable en el chat, nada de insultos ni spam.',
-  'No se permite el griefing (destruir bases, robar recursos comunes, bloquear puertas ajenas, etc.).',
-  'El botín reaparece cada 7 días; evita acumular todo en un solo refugio para que haya para todos.',
-];
-
-const HOW_TO_JOIN = [
-  'Abre Project Zomboid → <strong>Unirse</strong> → <strong>Unirse por IP</strong>.',
-  `IP: <code>54.38.81.169</code> · Puerto: <code>11400</code>`,
-  'O usa el botón <strong>"Unirse ahora"</strong> de abajo para conectar directamente desde Steam.',
-];
-
 const ROSTER = [
   'Jezu', 'Chocapic9000', 'SERGIO', 'RafaZD', 'Sheratan', 'SeyXmo', 'alexu',
   'Claus', 'Du Lidl', 'D Lidl', 'diegogm18', 'SeyxmoXIII', 'Rainbowtrash',
