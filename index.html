@@ -358,6 +358,42 @@
     color: var(--muted);
     margin-top: 0.1rem;
   }
+  .config-group + .config-group {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--inner-border);
+  }
+  .config-group h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--rust-bright);
+  }
+  .config-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .config-list li {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding: 0.3rem 0;
+    font-size: 0.78rem;
+  }
+  .config-list li span { color: var(--muted); }
+  .config-list li strong {
+    color: var(--text);
+    font-weight: 600;
+    text-align: right;
+  }
+  .config-list li strong.mono {
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    font-size: 0.72rem;
+  }
   .mods-warning {
     margin: 0 0 0.7rem;
     font-size: 0.76rem;
@@ -587,6 +623,49 @@
             <li><span class="change-setting">MultiHitZombies</span><span class="change-values"><code>false</code> → <code>true</code></span><span class="change-note">un golpe puede alcanzar a varios zombis</span></li>
             <li><span class="change-setting">MinutesPerPage</span><span class="change-values"><code>2.0</code> → <code>0.1</code></span><span class="change-note">lectura de libros de habilidad ~20x más rápida</span></li>
           </ul>
+        </div>
+      </details>
+
+      <details class="rules">
+        <summary>Configuración del servidor</summary>
+        <div class="rules-body">
+          <div class="config-group">
+            <h4>General</h4>
+            <ul class="config-list">
+              <li><span>Jugadores máximos</span><strong>10</strong></li>
+              <li><span>Semilla del mapa</span><strong class="mono">WVPRSdwloeUSifrw</strong></li>
+              <li><span>Chat de voz</span><strong>Activado (10–300 casillas)</strong></li>
+              <li><span>Facciones</span><strong>Activadas</strong></li>
+              <li><span>Copias de seguridad</span><strong>Cada 60 min · 5 más recientes</strong></li>
+            </ul>
+          </div>
+          <div class="config-group">
+            <h4>PVP y combate</h4>
+            <ul class="config-list">
+              <li><span>PVP</span><strong>Desactivado</strong></li>
+              <li><span>Multi-hit de zombis</span><strong>Activado</strong></li>
+            </ul>
+          </div>
+          <div class="config-group">
+            <h4>Refugios</h4>
+            <ul class="config-list">
+              <li><span>Reclamables por jugadores</span><strong>Sí</strong></li>
+              <li><span>Edificios no residenciales</span><strong>Sí</strong></li>
+              <li><span>Entrada sin invitación</span><strong>No</strong></li>
+              <li><span>Fuego daña refugios</span><strong>No</strong></li>
+              <li><span>Robar en refugios ajenos</span><strong>No</strong></li>
+              <li><span>Reaparecer en tu refugio</span><strong>Sí</strong></li>
+              <li><span>Eliminación por inactividad</span><strong>144h sin visitar</strong></li>
+            </ul>
+          </div>
+          <div class="config-group">
+            <h4>Supervivencia</h4>
+            <ul class="config-list">
+              <li><span>Dormir</span><strong>Permitido (no obligatorio)</strong></li>
+              <li><span>Reaparición de botín</span><strong>Cada 7 días</strong></li>
+              <li><span>Lectura de libros de habilidad</span><strong>Acelerada</strong></li>
+            </ul>
+          </div>
         </div>
       </details>
     </div>
