@@ -495,7 +495,7 @@
     <span class="badge">Project Zomboid</span>
     <h1>Server Poxillo</h1>
     <p class="subtitle">Estado del servidor en directo</p>
-    <p class="desc">Un rincón tranquilo de Kentucky para sobrevivir en equipo — sin PVP, con refugios protegidos y una banda sonora que suena a casa.</p>
+    <p class="desc">Un rincón tranquilo de Kentucky para sobrevivir en equipo, sin PVP, con refugios protegidos y una banda sonora que suena a casa.</p>
 
     <div class="status-panel">
       <div class="status-panel-header">
@@ -505,12 +505,12 @@
       <div class="info-row">
         <div>
           <div class="info-label">Jugadores</div>
-          <div class="info-value" id="players">—</div>
+          <div class="info-value" id="players">...</div>
         </div>
         <div>
           <div class="info-label">Dirección</div>
           <div class="address-row">
-            <span class="info-value mono" id="address">—</span>
+            <span class="info-value mono" id="address">...</span>
             <button class="copy-btn" id="copyBtn" type="button" title="Copiar dirección">Copiar</button>
           </div>
         </div>
@@ -552,7 +552,6 @@
       <details class="rules">
         <summary>Cómo unirse</summary>
         <div class="rules-body">
-          <p class="mods-warning">⚠ El servidor tiene 31 mods obligatorios (verificación de Lua activada) — suscríbete a todos en Steam Workshop desde la lista de "Mods" de esta página antes de conectar, o el juego rechazará la conexión.</p>
           <ul>
             <li>Abre Project Zomboid → <strong>Unirse</strong> → <strong>Unirse por IP</strong>.</li>
             <li>IP: <code>54.38.81.169</code> · Puerto: <code>11400</code></li>
@@ -681,7 +680,7 @@
 
   copyBtn.addEventListener('click', async () => {
     const text = address.textContent;
-    if (!text || text === '—') return;
+    if (!text || text === '...') return;
     try {
       await navigator.clipboard.writeText(text);
       copyBtn.textContent = '¡Copiado!';
@@ -748,7 +747,7 @@
 
       pill.className = 'pill ' + (data.online ? 'online' : 'offline');
       pill.textContent = data.online ? 'Online' : 'Offline';
-      address.textContent = data.address || '—';
+      address.textContent = data.address || '...';
 
       playerList.innerHTML = '';
       if (data.online && data.players) {
@@ -766,7 +765,7 @@
           playerEmpty.style.display = 'block';
         }
       } else if (data.online) {
-        players.textContent = '—';
+        players.textContent = '...';
         playerList.style.display = 'none';
         playerEmpty.style.display = 'none';
       } else {
