@@ -7,10 +7,11 @@
   --inner: #17130d;
   --inner-border: #3a241f;
   --rust: #6e2020;
-  --rust-bright: #a83636;
+  --rust-bright: #b23e3e;
+  --accent: #d15b5b;
   --sickly: #5c7a3a;
   --sickly-bright: #8fb356;
-  --red: #c94040;
+  --red: #ec6b6b;
   --text: #e8e1cf;
   --muted: #8a8270;
   --tag-bg: #1e1a12;
@@ -19,6 +20,13 @@
   --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.9), 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 * { box-sizing: border-box; }
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 body {
   margin: 0;
   min-height: 100vh;
@@ -328,7 +336,7 @@ h1 {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--rust-bright);
+  color: var(--accent);
 }
 .config-list {
   list-style: none;
@@ -352,15 +360,6 @@ h1 {
 .config-list li strong.mono {
   font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: 0.72rem;
-}
-.mods-warning {
-  margin: 0 0 0.7rem;
-  font-size: 0.76rem;
-  color: var(--rust-bright);
-  background: rgba(224, 112, 63, 0.1);
-  border: 1px solid rgba(224, 112, 63, 0.25);
-  border-radius: 6px;
-  padding: 0.5rem 0.6rem;
 }
 .mods-list {
   list-style: none;
@@ -391,7 +390,7 @@ h1 {
   background: rgba(224, 112, 63, 0.08);
 }
 .mods-list li a:hover span {
-  color: var(--rust-bright);
+  color: var(--accent);
 }
 .mods-list li span {
   color: var(--text);
@@ -466,7 +465,7 @@ footer {
   letter-spacing: 0.01em;
 }
 footer a {
-  color: var(--rust-bright);
+  color: var(--accent);
   text-decoration: none;
   font-weight: 600;
 }
