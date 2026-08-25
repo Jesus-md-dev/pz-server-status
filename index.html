@@ -13,481 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    color-scheme: dark;
-    --bg-0: #050504;
-    --bg-1: #0d0906;
-    --panel: #100d09;
-    --panel-border: #3d2621;
-    --inner: #17130d;
-    --inner-border: #3a241f;
-    --rust: #6e2020;
-    --rust-bright: #a83636;
-    --sickly: #5c7a3a;
-    --sickly-bright: #8fb356;
-    --red: #c94040;
-    --text: #e8e1cf;
-    --muted: #8a8270;
-    --tag-bg: #1e1a12;
-    --tag-text: #c9c0a0;
-    --discord: #5865f2;
-    --shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.9), 0 4px 12px rgba(0, 0, 0, 0.6);
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.25rem;
-    font-family: "Inter", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--text);
-    background:
-      radial-gradient(ellipse 1100px 700px at 50% 45%, transparent 40%, rgba(0, 0, 0, 0.45) 80%),
-      linear-gradient(rgba(5, 5, 4, 0.55), rgba(5, 5, 4, 0.55)),
-      url("/bg.jpg");
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: center, center, center;
-    background-size: cover, cover, cover;
-    background-attachment: fixed;
-    position: relative;
-    overflow-x: hidden;
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image: radial-gradient(rgba(233, 230, 216, 0.035) 1px, transparent 1px);
-    background-size: 3px 3px;
-    mix-blend-mode: overlay;
-  }
-  .card {
-    position: relative;
-    width: min(440px, 100%);
-    padding: 2.25rem 2rem 1.85rem;
-    background: var(--panel);
-    border: 1px solid var(--panel-border);
-    border-radius: 6px;
-    box-shadow: var(--shadow);
-    text-align: center;
-  }
-  .card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 6px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(224, 112, 63, 0.35), transparent 40%, transparent 60%, rgba(156, 196, 95, 0.25));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    background: rgba(148, 141, 120, 0.1);
-    border: 1px solid rgba(148, 141, 120, 0.25);
-    padding: 0.32rem 0.8rem;
-    border-radius: 3px;
-    margin-bottom: 1.1rem;
-  }
-  h1 {
-    font-family: "Staatliches", "Inter", sans-serif;
-    font-size: 2.4rem;
-    line-height: 1;
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    margin: 0 0 0.4rem;
-    color: var(--rust-bright);
-    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
-  }
-  .subtitle {
-    font-size: 0.88rem;
-    color: var(--muted);
-    margin: 0 0 0.6rem;
-    letter-spacing: 0.01em;
-  }
-  .desc {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin: 0 0 1.5rem;
-    line-height: 1.5;
-  }
-
-  .status-panel {
-    background: var(--inner);
-    border: 1px solid var(--inner-border);
-    border-radius: 8px;
-    padding: 1.1rem 1.2rem 1.25rem;
-    text-align: left;
-    box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.6);
-  }
-  .status-panel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    margin-bottom: 0.9rem;
-  }
-  .server-name {
-    font-size: 1.02rem;
-    font-weight: 700;
-    color: var(--text);
-  }
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 0.22rem 0.6rem;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-  .pill::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-  }
-  .pill.online { color: var(--sickly-bright); background: rgba(156, 196, 95, 0.14); }
-  .pill.online::before { background: var(--sickly-bright); box-shadow: 0 0 6px 1px var(--sickly-bright); }
-  .pill.offline { color: var(--red); background: rgba(224, 90, 90, 0.14); }
-  .pill.offline::before { background: var(--red); }
-  .pill.checking { color: var(--muted); background: rgba(148, 141, 120, 0.12); }
-  .pill.checking::before { background: var(--muted); }
-
-  .info-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-bottom: 0.9rem;
-  }
-  .info-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.2rem;
-  }
-  .info-value {
-    font-size: 0.92rem;
-    font-weight: 700;
-    color: var(--text);
-    word-break: break-word;
-  }
-  .info-value.mono {
-    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-    font-size: 0.82rem;
-  }
-  .address-row {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
-  .copy-btn {
-    font-family: inherit;
-    font-size: 0.66rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--tag-text);
-    background: var(--tag-bg);
-    border: 1px solid var(--inner-border);
-    border-radius: 4px;
-    padding: 0.18rem 0.45rem;
-    cursor: pointer;
-    transition: filter 0.15s ease;
-  }
-  .copy-btn:hover { filter: brightness(1.2); }
-  .copy-btn.copied { color: var(--sickly-bright); border-color: rgba(156, 196, 95, 0.4); }
-
-  .player-list {
-    list-style: none;
-    margin: 0.6rem 0 0;
-    padding: 0.7rem 0 0;
-    border-top: 1px solid var(--inner-border);
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-  .player-list li {
-    font-size: 0.85rem;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 0.45rem;
-  }
-  .player-list li::before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--sickly-bright);
-    flex: 0 0 auto;
-  }
-  .player-empty {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin: 0.6rem 0 0;
-    padding-top: 0.7rem;
-    border-top: 1px solid var(--inner-border);
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 1rem;
-  }
-  .tag {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--tag-text);
-    background: var(--tag-bg);
-    padding: 0.25rem 0.55rem;
-    border-radius: 4px;
-  }
-
-  .details-grid {
-    margin-top: 1rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--inner-border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.7rem;
-  }
-  .details-grid .info-label { margin-bottom: 0.15rem; }
-  .details-grid .info-value { font-size: 0.85rem; font-weight: 600; }
-
-  .rules {
-    margin-top: 1.25rem;
-    text-align: left;
-  }
-  .rules summary {
-    cursor: pointer;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--muted);
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .rules summary::-webkit-details-marker { display: none; }
-  .rules summary::before {
-    content: "▸";
-    transition: transform 0.15s ease;
-    color: var(--muted);
-  }
-  .rules[open] summary::before { transform: rotate(90deg); }
-  .rules summary:hover { color: var(--text); }
-  .rules-body {
-    margin: 0.7rem 0 0;
-    padding: 0.9rem 1rem;
-    background: var(--inner);
-    border: 1px solid var(--inner-border);
-    border-radius: 8px;
-    font-size: 0.82rem;
-    color: var(--text);
-    line-height: 1.55;
-  }
-  .rules-body ul { margin: 0; padding-left: 1.1rem; }
-  .rules-body li { margin-bottom: 0.35rem; }
-  .rules-body li:last-child { margin-bottom: 0; }
-  .rules-body ul.roster {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-  }
-  .rules-body ul.roster li {
-    margin-bottom: 0;
-    font-size: 0.76rem;
-    font-weight: 600;
-    background: var(--tag-bg);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-  }
-  .rules-body code {
-    background: var(--tag-bg);
-    padding: 0.08rem 0.35rem;
-    border-radius: 3px;
-    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-  }
-  .config-group + .config-group {
-    margin-top: 1rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--inner-border);
-  }
-  .config-group h4 {
-    margin: 0 0 0.5rem;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--rust-bright);
-  }
-  .config-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-  }
-  .config-list li {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.6rem;
-    padding: 0.3rem 0;
-    font-size: 0.78rem;
-  }
-  .config-list li span { color: var(--muted); }
-  .config-list li strong {
-    color: var(--text);
-    font-weight: 600;
-    text-align: right;
-  }
-  .config-list li strong.mono {
-    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
-    font-size: 0.72rem;
-  }
-  .mods-warning {
-    margin: 0 0 0.7rem;
-    font-size: 0.76rem;
-    color: var(--rust-bright);
-    background: rgba(224, 112, 63, 0.1);
-    border: 1px solid rgba(224, 112, 63, 0.25);
-    border-radius: 6px;
-    padding: 0.5rem 0.6rem;
-  }
-  .mods-list {
-    list-style: none;
-    padding-left: 0;
-    max-height: 260px;
-    overflow-y: auto;
-  }
-  .mods-list li {
-    border-top: 1px solid var(--inner-border);
-    font-size: 0.78rem;
-  }
-  .mods-list li:first-child {
-    border-top: none;
-  }
-  .mods-list li a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.6rem;
-    padding: 0.4rem 0.3rem;
-    margin: 0 -0.3rem;
-    border-radius: 4px;
-    text-decoration: none;
-    color: inherit;
-    transition: background 0.15s ease;
-  }
-  .mods-list li a:hover {
-    background: rgba(224, 112, 63, 0.08);
-  }
-  .mods-list li a:hover span {
-    color: var(--rust-bright);
-  }
-  .mods-list li span {
-    color: var(--text);
-    transition: color 0.15s ease;
-  }
-  .mods-list li code {
-    font-size: 0.68rem;
-    color: var(--muted);
-    background: var(--tag-bg);
-    padding: 0.08rem 0.35rem;
-    border-radius: 3px;
-    white-space: nowrap;
-  }
-
-  .actions {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 0.6rem;
-  }
-  .btn {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.65rem 0.8rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-decoration: none;
-    font-family: inherit;
-    border: none;
-    cursor: pointer;
-    transition: filter 0.15s ease, transform 0.1s ease;
-  }
-  .btn:hover { filter: brightness(1.1); }
-  .btn:active { transform: scale(0.98); }
-  .btn.discord { background: var(--discord); color: #fff; }
-  .btn.secondary {
-    background: var(--tag-bg);
-    color: var(--text);
-    border: 1px solid var(--inner-border);
-  }
-  .btn.secondary.active {
-    color: var(--sickly-bright);
-    border-color: rgba(156, 196, 95, 0.4);
-  }
-  .join-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    width: 100%;
-    margin-top: 1.5rem;
-    padding: 0.75rem 0.8rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-decoration: none;
-    background: linear-gradient(135deg, var(--rust), var(--rust-bright));
-    color: #fff;
-    box-shadow: 0 8px 20px -8px rgba(224, 112, 63, 0.5);
-    transition: filter 0.15s ease, transform 0.1s ease;
-  }
-  .join-btn:hover { filter: brightness(1.08); }
-  .join-btn:active { transform: scale(0.98); }
-
-  footer {
-    margin-top: 1.25rem;
-    font-size: 0.76rem;
-    color: var(--muted);
-    letter-spacing: 0.01em;
-  }
-  footer a {
-    color: var(--rust-bright);
-    text-decoration: none;
-    font-weight: 600;
-  }
-  footer a:hover { text-decoration: underline; }
-</style>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <div class="card">
@@ -498,7 +24,7 @@
 
     <div class="status-panel">
       <div class="status-panel-header">
-        <span class="server-name">Server Poxillo</span>
+        <span class="server-name" id="serverName">—</span>
         <span class="pill checking" id="pill">Comprobando…</span>
       </div>
       <div class="info-row">
@@ -527,138 +53,53 @@
       <div class="details-grid">
         <div>
           <div class="info-label">Mapa</div>
-          <div class="info-value">Muldraugh, KY</div>
+          <div class="info-value" id="mapValue">—</div>
         </div>
         <div>
           <div class="info-label">Versión</div>
-          <div class="info-value">Stable · build 24775771</div>
+          <div class="info-value" id="versionValue">—</div>
         </div>
       </div>
 
       <details class="rules">
         <summary>Reglas del servidor</summary>
         <div class="rules-body">
-          <ul>
-            <li>PVP desactivado en todo el servidor: no se puede dañar a otros jugadores.</li>
-            <li>Respeta los refugios (safehouses) de otros jugadores: no se puede entrar, saquear ni prender fuego a refugios ajenos.</li>
-            <li>Sé amable en el chat, nada de insultos ni spam.</li>
-            <li>No se permite el griefing (destruir bases, robar recursos comunes, bloquear puertas ajenas, etc.).</li>
-            <li>El botín reaparece cada 7 días; evita acumular todo en un solo refugio para que haya para todos.</li>
-          </ul>
+          <ul id="rulesList"></ul>
         </div>
       </details>
 
       <details class="rules">
         <summary>Cómo unirse</summary>
         <div class="rules-body">
-          <ul>
-            <li>Abre Project Zomboid → <strong>Unirse</strong> → <strong>Unirse por IP</strong>.</li>
-            <li>IP: <code>54.38.81.169</code> · Puerto: <code>11400</code></li>
-            <li>O usa el botón <strong>"Unirse ahora"</strong> de abajo para conectar directamente desde Steam.</li>
-          </ul>
+          <ul id="howToJoinList"></ul>
         </div>
       </details>
 
       <details class="rules">
-        <summary>Supervivientes registrados (18)</summary>
+        <summary id="rosterSummary">Supervivientes registrados</summary>
         <div class="rules-body">
-          <ul class="roster">
-            <li>Jezu</li><li>Chocapic9000</li><li>SERGIO</li><li>RafaZD</li>
-            <li>Sheratan</li><li>SeyXmo</li><li>alexu</li><li>Claus</li>
-            <li>Du Lidl</li><li>D Lidl</li><li>diegogm18</li><li>SeyxmoXIII</li>
-            <li>Rainbowtrash</li><li>CHatarras</li><li>Moiseh</li><li>Dea</li><li>Netsu</li>
-          </ul>
+          <ul class="roster" id="rosterList"></ul>
         </div>
       </details>
 
       <details class="rules">
-        <summary>Mods (31)</summary>
+        <summary id="modsSummary">Mods</summary>
         <div class="rules-body">
-          <ul class="mods-list">
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3677217949" target="_blank" rel="noopener"><span>1967 Chevrolet Impala</span><code>3677217949</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3673794502" target="_blank" rel="noopener"><span>[B42] Spanish Guitar Addon</span><code>3673794502</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2850170557" target="_blank" rel="noopener"><span>CartoonTV</span><code>2850170557</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3437629766" target="_blank" rel="noopener"><span>CleanUI</span><code>3437629766</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3645161115" target="_blank" rel="noopener"><span>CNP España Mod</span><code>3645161115</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3784413438" target="_blank" rel="noopener"><span>Fichin Lifestyle Hobbies (traducción ES)</span><code>3784413438</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2950529166" target="_blank" rel="noopener"><span>Furgonetas de España / Vans of Spain</span><code>2950529166</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2544353492" target="_blank" rel="noopener"><span>Has Been Read</span><code>2544353492</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2553809727" target="_blank" rel="noopener"><span>KillCount</span><code>2553809727</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3412944806" target="_blank" rel="noopener"><span>LifeStyle - Acoustic Guitar</span><code>3412944806</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3421651510" target="_blank" rel="noopener"><span>LifeStyle: Guitar - The Last of Us</span><code>3421651510</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3093045288" target="_blank" rel="noopener"><span>Lifestyle: Guts Theme</span><code>3093045288</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3403870858" target="_blank" rel="noopener"><span>Lifestyle: Hobbies</span><code>3403870858</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2710167561" target="_blank" rel="noopener"><span>Map Legend UI</span><code>2710167561</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2705406713" target="_blank" rel="noopener"><span>Military Tool Kit</span><code>2705406713</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3508537032" target="_blank" rel="noopener"><span>NeatUI Framework</span><code>3508537032</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3261836947" target="_blank" rel="noopener"><span>Piano Music Lifestyle Addon</span><code>3261836947</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3645980077" target="_blank" rel="noopener"><span>Project Arcade</span><code>3645980077</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2956146279" target="_blank" rel="noopener"><span>Rain Cleans Blood</span><code>2956146279</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3705029261" target="_blank" rel="noopener"><span>Red Library</span><code>3705029261</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3538308427" target="_blank" rel="noopener"><span>Silent Hill Lifestyle Addon</span><code>3538308427</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3456675747" target="_blank" rel="noopener"><span>Skateboard!</span><code>3456675747</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3469194888" target="_blank" rel="noopener"><span>Spanish Female Voice Pack</span><code>3469194888</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3447058353" target="_blank" rel="noopener"><span>Spanish Male Voice Pack</span><code>3447058353</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3580276809" target="_blank" rel="noopener"><span>The Only Cure</span><code>3580276809</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3407139462" target="_blank" rel="noopener"><span>Time-Period Accurate Music B42</span><code>3407139462</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3632610172" target="_blank" rel="noopener"><span>True Moozic B42+</span><code>3632610172</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3673701089" target="_blank" rel="noopener"><span>True Moozic: Video Game Mixtapes</span><code>3673701089</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3715920784" target="_blank" rel="noopener"><span>TrueMoozic Made in Spain</span><code>3715920784</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2831786301" target="_blank" rel="noopener"><span>Video Game Consoles</span><code>2831786301</code></a></li>
-            <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3177585116" target="_blank" rel="noopener"><span>Violin Music Lifestyle Addon</span><code>3177585116</code></a></li>
-          </ul>
+          <ul class="mods-list" id="modsList"></ul>
         </div>
       </details>
 
       <details class="rules">
         <summary>Configuración del servidor</summary>
-        <div class="rules-body">
-          <div class="config-group">
-            <h4>General</h4>
-            <ul class="config-list">
-              <li><span>Jugadores máximos</span><strong>10</strong></li>
-              <li><span>Semilla del mapa</span><strong class="mono">WVPRSdwloeUSifrw</strong></li>
-              <li><span>Chat de voz</span><strong>Activado (10–300 casillas)</strong></li>
-              <li><span>Facciones</span><strong>Activadas</strong></li>
-              <li><span>Copias de seguridad</span><strong>Cada 60 min · 5 más recientes</strong></li>
-            </ul>
-          </div>
-          <div class="config-group">
-            <h4>PVP y combate</h4>
-            <ul class="config-list">
-              <li><span>PVP</span><strong>Desactivado</strong></li>
-              <li><span>Multi-hit de zombis</span><strong>Activado</strong></li>
-            </ul>
-          </div>
-          <div class="config-group">
-            <h4>Refugios</h4>
-            <ul class="config-list">
-              <li><span>Reclamables por jugadores</span><strong>Sí</strong></li>
-              <li><span>Edificios no residenciales</span><strong>Sí</strong></li>
-              <li><span>Entrada sin invitación</span><strong>No</strong></li>
-              <li><span>Fuego daña refugios</span><strong>No</strong></li>
-              <li><span>Robar en refugios ajenos</span><strong>No</strong></li>
-              <li><span>Reaparecer en tu refugio</span><strong>Sí</strong></li>
-              <li><span>Eliminación por inactividad</span><strong>144h sin visitar</strong></li>
-            </ul>
-          </div>
-          <div class="config-group">
-            <h4>Supervivencia</h4>
-            <ul class="config-list">
-              <li><span>Dormir</span><strong>Permitido (no obligatorio)</strong></li>
-              <li><span>Reaparición de botín</span><strong>Cada 7 días</strong></li>
-              <li><span>Lectura de libros de habilidad</span><strong>Acelerada (0.1 min/página)</strong></li>
-            </ul>
-          </div>
-        </div>
+        <div class="rules-body" id="configGroups"></div>
       </details>
     </div>
 
-    <a class="btn join-btn" href="steam://connect/54.38.81.169:11400" id="joinBtn">▶ Unirse ahora</a>
+    <a class="btn join-btn" href="#" id="joinBtn">▶ Unirse ahora</a>
 
     <div class="actions">
-      <a class="btn discord" href="https://discord.gg/xgFmnhnsZ4" target="_blank" rel="noopener">Discord</a>
-      <a class="btn secondary" href="https://supercraft.host/s/pz-jzmarquez-com/" target="_blank" rel="noopener">Página pública</a>
+      <a class="btn discord" href="#" id="discordBtn" target="_blank" rel="noopener">Discord</a>
+      <a class="btn secondary" href="#" id="publicPageBtn" target="_blank" rel="noopener">Página pública</a>
     </div>
 
     <div class="actions">
@@ -669,117 +110,7 @@
     <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
   </div>
 
-<script>
-  const pill = document.getElementById('pill');
-  const players = document.getElementById('players');
-  const address = document.getElementById('address');
-  const playerList = document.getElementById('playerList');
-  const playerEmpty = document.getElementById('playerEmpty');
-  const copyBtn = document.getElementById('copyBtn');
-
-  copyBtn.addEventListener('click', async () => {
-    const text = address.textContent;
-    if (!text || text === '...') return;
-    try {
-      await navigator.clipboard.writeText(text);
-      copyBtn.textContent = '¡Copiado!';
-      copyBtn.classList.add('copied');
-      setTimeout(() => {
-        copyBtn.textContent = 'Copiar';
-        copyBtn.classList.remove('copied');
-      }, 1500);
-    } catch (e) {
-      copyBtn.textContent = 'Error';
-      setTimeout(() => { copyBtn.textContent = 'Copiar'; }, 1500);
-    }
-  });
-
-  const notifyBtn = document.getElementById('notifyBtn');
-  const shareBtn = document.getElementById('shareBtn');
-  let notifyEnabled = localStorage.getItem('pz_notify') === '1';
-  let wasOnline = null;
-
-  function refreshNotifyBtn() {
-    notifyBtn.textContent = notifyEnabled ? '🔔 Avisos activados' : '🔔 Avisarme cuando esté online';
-    notifyBtn.classList.toggle('active', notifyEnabled);
-  }
-  refreshNotifyBtn();
-
-  notifyBtn.addEventListener('click', async () => {
-    if (!('Notification' in window)) {
-      alert('Tu navegador no soporta notificaciones.');
-      return;
-    }
-    if (!notifyEnabled) {
-      const perm = await Notification.requestPermission();
-      if (perm !== 'granted') return;
-      notifyEnabled = true;
-    } else {
-      notifyEnabled = false;
-    }
-    localStorage.setItem('pz_notify', notifyEnabled ? '1' : '0');
-    refreshNotifyBtn();
-  });
-
-  shareBtn.addEventListener('click', async () => {
-    const shareData = { title: 'Server Poxillo - Project Zomboid', url: location.href };
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        await navigator.clipboard.writeText(location.href);
-        shareBtn.textContent = '¡Enlace copiado!';
-        setTimeout(() => { shareBtn.textContent = 'Compartir'; }, 1500);
-      }
-    } catch (e) { /* usuario canceló el share, ignorar */ }
-  });
-
-  async function poll() {
-    try {
-      const res = await fetch('/.netlify/functions/status', { cache: 'no-store' });
-      const data = await res.json();
-
-      if (notifyEnabled && wasOnline === false && data.online && Notification.permission === 'granted') {
-        new Notification('Server Poxillo está online', { body: '¡Ya puedes conectarte!' });
-      }
-      wasOnline = data.online;
-
-      pill.className = 'pill ' + (data.online ? 'online' : 'offline');
-      pill.textContent = data.online ? 'Online' : 'Offline';
-      address.textContent = data.address || '...';
-
-      playerList.innerHTML = '';
-      if (data.online && data.players) {
-        players.textContent = data.players.count + ' / 10';
-        if (data.players.count > 0) {
-          playerList.style.display = 'flex';
-          playerEmpty.style.display = 'none';
-          data.players.names.forEach((name) => {
-            const li = document.createElement('li');
-            li.textContent = name;
-            playerList.appendChild(li);
-          });
-        } else {
-          playerList.style.display = 'none';
-          playerEmpty.style.display = 'block';
-        }
-      } else if (data.online) {
-        players.textContent = '...';
-        playerList.style.display = 'none';
-        playerEmpty.style.display = 'none';
-      } else {
-        players.textContent = '0 / 10';
-        playerList.style.display = 'none';
-        playerEmpty.style.display = 'none';
-      }
-    } catch (e) {
-      pill.className = 'pill offline';
-      pill.textContent = 'Sin datos';
-    }
-  }
-
-  poll();
-  setInterval(poll, 300000);
-</script>
+<script src="/data.js"></script>
+<script src="/app.js"></script>
 </body>
 </html>
