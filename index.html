@@ -115,8 +115,14 @@
   .subtitle {
     font-size: 0.88rem;
     color: var(--muted);
-    margin: 0 0 1.6rem;
+    margin: 0 0 0.6rem;
     letter-spacing: 0.01em;
+  }
+  .desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
   }
 
   .status-panel {
@@ -433,6 +439,9 @@
     font-size: 0.85rem;
     font-weight: 700;
     text-decoration: none;
+    font-family: inherit;
+    border: none;
+    cursor: pointer;
     transition: filter 0.15s ease, transform 0.1s ease;
   }
   .btn:hover { filter: brightness(1.1); }
@@ -443,6 +452,29 @@
     color: var(--text);
     border: 1px solid var(--inner-border);
   }
+  .btn.secondary.active {
+    color: var(--sickly-bright);
+    border-color: rgba(156, 196, 95, 0.4);
+  }
+  .join-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.75rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--rust), var(--rust-bright));
+    color: #fff;
+    box-shadow: 0 8px 20px -8px rgba(224, 112, 63, 0.5);
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+  .join-btn:hover { filter: brightness(1.08); }
+  .join-btn:active { transform: scale(0.98); }
 
   footer {
     margin-top: 1.25rem;
@@ -463,6 +495,7 @@
     <span class="badge">Project Zomboid</span>
     <h1>Server Poxillo</h1>
     <p class="subtitle">Estado del servidor en directo</p>
+    <p class="desc">Un rincón tranquilo de Kentucky para sobrevivir en equipo — sin PVP, con refugios protegidos y una banda sonora que suena a casa.</p>
 
     <div class="status-panel">
       <div class="status-panel-header">
@@ -519,9 +552,11 @@
       <details class="rules">
         <summary>Cómo unirse</summary>
         <div class="rules-body">
+          <p class="mods-warning">⚠ El servidor tiene 31 mods obligatorios (verificación de Lua activada) — suscríbete a todos en Steam Workshop desde la lista de "Mods" de esta página antes de conectar, o el juego rechazará la conexión.</p>
           <ul>
             <li>Abre Project Zomboid → <strong>Unirse</strong> → <strong>Unirse por IP</strong>.</li>
             <li>IP: <code>54.38.81.169</code> · Puerto: <code>11400</code></li>
+            <li>O usa el botón <strong>"Unirse ahora"</strong> de abajo para conectar directamente desde Steam.</li>
           </ul>
         </div>
       </details>
@@ -621,9 +656,16 @@
       </details>
     </div>
 
+    <a class="btn join-btn" href="steam://connect/54.38.81.169:11400" id="joinBtn">▶ Unirse ahora</a>
+
     <div class="actions">
       <a class="btn discord" href="https://discord.gg/xgFmnhnsZ4" target="_blank" rel="noopener">Discord</a>
       <a class="btn secondary" href="https://supercraft.host/s/pz-jzmarquez-com/" target="_blank" rel="noopener">Página pública</a>
+    </div>
+
+    <div class="actions">
+      <button class="btn secondary" id="notifyBtn" type="button">🔔 Avisarme cuando esté online</button>
+      <button class="btn secondary" id="shareBtn" type="button">Compartir</button>
     </div>
 
     <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
@@ -654,10 +696,55 @@
     }
   });
 
+  const notifyBtn = document.getElementById('notifyBtn');
+  const shareBtn = document.getElementById('shareBtn');
+  let notifyEnabled = localStorage.getItem('pz_notify') === '1';
+  let wasOnline = null;
+
+  function refreshNotifyBtn() {
+    notifyBtn.textContent = notifyEnabled ? '🔔 Avisos activados' : '🔔 Avisarme cuando esté online';
+    notifyBtn.classList.toggle('active', notifyEnabled);
+  }
+  refreshNotifyBtn();
+
+  notifyBtn.addEventListener('click', async () => {
+    if (!('Notification' in window)) {
+      alert('Tu navegador no soporta notificaciones.');
+      return;
+    }
+    if (!notifyEnabled) {
+      const perm = await Notification.requestPermission();
+      if (perm !== 'granted') return;
+      notifyEnabled = true;
+    } else {
+      notifyEnabled = false;
+    }
+    localStorage.setItem('pz_notify', notifyEnabled ? '1' : '0');
+    refreshNotifyBtn();
+  });
+
+  shareBtn.addEventListener('click', async () => {
+    const shareData = { title: 'Server Poxillo - Project Zomboid', url: location.href };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(location.href);
+        shareBtn.textContent = '¡Enlace copiado!';
+        setTimeout(() => { shareBtn.textContent = 'Compartir'; }, 1500);
+      }
+    } catch (e) { /* usuario canceló el share, ignorar */ }
+  });
+
   async function poll() {
     try {
       const res = await fetch('/.netlify/functions/status', { cache: 'no-store' });
       const data = await res.json();
+
+      if (notifyEnabled && wasOnline === false && data.online && Notification.permission === 'granted') {
+        new Notification('Server Poxillo está online', { body: '¡Ya puedes conectarte!' });
+      }
+      wasOnline = data.online;
 
       pill.className = 'pill ' + (data.online ? 'online' : 'offline');
       pill.textContent = data.online ? 'Online' : 'Offline';
