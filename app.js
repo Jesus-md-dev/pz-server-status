@@ -24,6 +24,18 @@ function renderStaticContent() {
       </ul>
     </div>
   `).join('');
+
+  const diskPct = Math.min(100, (DISK.usedGB / DISK.maxGB) * 100);
+  const diskFill = document.getElementById('diskBarFill');
+  diskFill.style.width = `${diskPct.toFixed(1)}%`;
+  diskFill.classList.toggle('warn', diskPct >= 70 && diskPct < 90);
+  diskFill.classList.toggle('critical', diskPct >= 90);
+  document.getElementById('diskValue').textContent = `${DISK.usedGB} GB / ${DISK.maxGB} GB`;
+  document.getElementById('diskNote').textContent =
+    `${diskPct.toFixed(0)}% usado · comprobado el ${DISK.checkedAt}`;
+  document.getElementById('diskBreakdown').innerHTML = DISK.breakdown
+    .map(([label, value]) => `<li><span>${label}</span><strong>${value}</strong></li>`)
+    .join('');
 }
 
 function setupCopyButton() {

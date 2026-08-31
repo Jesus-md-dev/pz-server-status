@@ -16,6 +16,20 @@ const ROSTER = [
   'CHatarras', 'Moiseh', 'Dea', 'Netsu',
 ];
 
+// Comprobado a mano vía FTP + Steam Workshop API (no hay endpoint en vivo
+// para el disco del hosting). Actualizar cuando cambien mucho los mods o
+// crezca bastante la partida guardada.
+const DISK = {
+  usedGB: 28.7,
+  maxGB: 40,
+  checkedAt: '31 ago 2026',
+  breakdown: [
+    ['Mods de Steam Workshop', '28.1 GB'],
+    ['Partida guardada', '0.6 GB'],
+    ['Configuración, logs y base de datos', '< 1 MB'],
+  ],
+};
+
 // Ordenados alfabéticamente por nombre para mostrar.
 const MODS = [
   { name: '1967 Chevrolet Impala', id: '3677217949', img: 'https://images.steamusercontent.com/ugc/16581962237040362441/EE453A0F3F03403D835B85A4FFCEE87869B8B8F4/', desc: 'Añade un Chevrolet Impala de 1967 totalmente animado y detallado.' },

@@ -88,6 +88,15 @@
         </div>
       </div>
 
+      <div class="disk-status">
+        <div class="disk-status-header">
+          <span class="info-label">Espacio en disco</span>
+          <span class="disk-status-value" id="diskValue">...</span>
+        </div>
+        <div class="disk-bar"><div class="disk-bar-fill" id="diskBarFill"></div></div>
+        <p class="disk-status-note" id="diskNote"></p>
+      </div>
+
       <details class="rules">
         <summary>Reglas del servidor</summary>
         <div class="rules-body">
@@ -122,6 +131,13 @@
       <details class="rules">
         <summary>Configuración del servidor</summary>
         <div class="rules-body" id="configGroups"></div>
+      </details>
+
+      <details class="rules">
+        <summary>Desglose del disco</summary>
+        <div class="rules-body">
+          <ul class="config-list" id="diskBreakdown"></ul>
+        </div>
       </details>
 
       <a class="rules mods-link" href="/mods.html">
