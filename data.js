@@ -20,7 +20,7 @@ const ROSTER = [
 // para el disco del hosting). Actualizar cuando cambien mucho los mods o
 // crezca bastante la partida guardada.
 const DISK = {
-  usedGB: 19.4,
+  usedGB: 10.9,
   maxGB: 40,
   checkedAt: '31 ago 2026',
 };
@@ -72,21 +72,15 @@ const MODS = [
   { name: 'True Moozic: DethkloK Jampack', id: '3637950124', img: 'https://images.steamusercontent.com/ugc/17438225934460110916/156DFF6D756FC255A623D3193AAFF8DECAAF2541/', desc: 'Pack de canciones de Dethklok para True Moozic.', sizeMB: 173.6, category: 'Musica' },
   { name: 'True Moozic: Gorillaz', id: '3664004489', img: 'https://images.steamusercontent.com/ugc/15159033253462986683/FF7459726D366FC98BC50512D0847A16C52C25D7/', desc: 'Pack de canciones de Gorillaz para True Moozic.', sizeMB: 88.0, category: 'Musica' },
   { name: 'True Moozic: Green Day', id: '3664652706', img: 'https://images.steamusercontent.com/ugc/18311864813676991668/DD6FB58ED3992C0A2660E6D5A0581306AE777DF8/', desc: 'Pack de canciones de Green Day para True Moozic.', sizeMB: 248.3, category: 'Musica' },
-  { name: 'True Moozic: Juice WRLD', id: '3664703556', img: 'https://images.steamusercontent.com/ugc/9481601517797720379/6F0D03FD73EE3BA589D7DCA7BF2CABC490BE34F0/', desc: '183 canciones de Juice WRLD para True Moozic.', sizeMB: 1444.5, category: 'Musica' },
   { name: 'True Moozic: lofimoo Jampack', id: '3635374672', img: 'https://images.steamusercontent.com/ugc/12689463319611977606/A1CF6301FA5A8324A17D20DC802C46A4EADE15E9/', desc: 'Pack de música lofi para True Moozic.', sizeMB: 67.0, category: 'Musica' },
-  { name: 'True Moozic: Metal', id: '3663486520', img: 'https://images.steamusercontent.com/ugc/9614609509254118192/BE24001970B8319BBA102F634622E8AB4BF609B5/', desc: '189 canciones de metal para True Moozic.', sizeMB: 1661.8, category: 'Musica' },
   { name: 'True Moozic: MINORTH', id: '3636235926', img: 'https://images.steamusercontent.com/ugc/13658237021660299990/3B39F3D6B09A4CBA5B8C46936BB28276B2CAFAC4/', desc: 'Pack de canciones de Minor Threat para True Moozic.', sizeMB: 12.2, category: 'Musica' },
-  { name: 'True Moozic: Mixtape Megapack', id: '3633882960', img: 'https://images.steamusercontent.com/ugc/11933835928042381782/8EADD35AFF95EE8F0C36E6588CED36825DBC2F42/', desc: 'Más de 100 mixtapes variadas para True Moozic.', sizeMB: 1114.1, category: 'Musica' },
   { name: 'True Moozic: Official CD Collection', id: '3686548791', img: 'https://images.steamusercontent.com/ugc/9785408110266652791/F306FF9994B285B95D753B4382C9F3E16017875F/', desc: 'CDs de artistas como Metallica, Korn y Slipknot para True Moozic.', sizeMB: 251.5, category: 'Musica' },
   { name: 'True Moozic: Pink Floyd Vinyl', id: '3659009768', img: 'https://images.steamusercontent.com/ugc/13825233572065578238/2D2E39A96BF80F0328A55C272E5703366F6BEE50/', desc: 'Vinilo de The Dark Side of the Moon para True Moozic.', sizeMB: 18.4, category: 'Musica' },
-  { name: 'True Moozic: Pop Culture', id: '3662973331', img: 'https://images.steamusercontent.com/ugc/13085398812993214071/115DB5F23C159ABDBC1F2546F4C19D1C6D061E70/', desc: '438 canciones populares de la época para True Moozic.', sizeMB: 1582.2, category: 'Musica' },
   { name: 'True Moozic: Rammstein Jampack', id: '3642375640', img: 'https://images.steamusercontent.com/ugc/14733175327055398935/DC0E56F30E4C4130EDF68AF9482207C14870E61B/', desc: 'Pack de canciones de Rammstein para True Moozic.', sizeMB: 124.3, category: 'Musica' },
   { name: 'True Moozic: Red Hot Chili Peppers', id: '3662275722', img: 'https://images.steamusercontent.com/ugc/12960098728482932133/7171D2E13C84DBE4FDC68F20825B6452BD9706BA/', desc: 'Pack de canciones de Red Hot Chili Peppers para True Moozic.', sizeMB: 45.5, category: 'Musica' },
   { name: 'True Moozic: SPEGHEDDY', id: '3635321145', img: 'https://images.steamusercontent.com/ugc/16844261406106496115/65972999B9B3EF6615F461678F830FE680FC5EA7/', desc: 'Pack de canciones de Spag Heddy para True Moozic.', sizeMB: 148.8, category: 'Musica' },
   { name: 'True Moozic: The Hives', id: '3674950795', img: 'https://images.steamusercontent.com/ugc/13733037712691999413/DD87E6C500809A750F1A2E451768D958D10CE43D/', desc: 'Pack de canciones de The Hives para True Moozic.', sizeMB: 89.5, category: 'Musica' },
   { name: 'True Moozic: Video Game Mixtapes', id: '3673701089', img: 'https://images.steamusercontent.com/ugc/10101961085395841058/C31C85EEC7F6C96257CB381336074233D60DEDD8/', desc: '59 mixtapes con bandas sonoras de videojuegos.', sizeMB: 672.1, category: 'Musica' },
-  { name: 'True Moozic: Vinyl Collection', id: '3668406327', img: 'https://images.steamusercontent.com/ugc/10206888183140904648/D3B0C2EA86C6B48617EA46414075120971B8A1A2/', desc: 'Colección de vinilos clásicos (ABBA, Aerosmith, CCR...) para True Moozic.', sizeMB: 2783.5, category: 'Musica' },
-  { name: 'True Moozic: Weird Al Yankovic', id: '3662592543', img: 'https://images.steamusercontent.com/ugc/13225857315840734548/A65131D8F00AF70D16EE7FB9FBCE02279B830DA8/', desc: 'Pack de canciones de Weird Al Yankovic para True Moozic.', sizeMB: 112.4, category: 'Musica' },
   { name: 'TrueMoozic Made in Spain', id: '3715920784', img: 'https://images.steamusercontent.com/ugc/9379193028934776586/491DF24EFF6E751E8E08539E7EE857F0582C8463/', desc: 'Pack de música española clásica para True Moozic.', sizeMB: 318.4, category: 'Musica' },
   { name: 'Vanilla Vehicles Animated', id: '3281755175', img: 'https://images.steamusercontent.com/ugc/2520408817783418351/C71EDD49607F87F26C3C5959011CE3126F513B1A/', desc: 'Añade animaciones a los vehículos vanilla del juego.', sizeMB: 67.9, category: 'Vehiculos' },
   { name: 'Video Game Consoles', id: '2831786301', img: 'https://images.steamusercontent.com/ugc/56957406872548552/16BF3625E6DBE27E9732769A35409A30807E15ED/', desc: 'Consolas retro jugables: Game Boy, NES, SNES, Genesis y más.', sizeMB: 6.7, category: 'Ocio' },
