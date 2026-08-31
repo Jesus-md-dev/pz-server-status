@@ -33,9 +33,6 @@ function renderStaticContent() {
   document.getElementById('diskValue').textContent = `${DISK.usedGB} GB / ${DISK.maxGB} GB`;
   document.getElementById('diskNote').textContent =
     `${diskPct.toFixed(0)}% usado · comprobado el ${DISK.checkedAt}`;
-  document.getElementById('diskBreakdown').innerHTML = DISK.breakdown
-    .map(([label, value]) => `<li><span>${label}</span><strong>${value}</strong></li>`)
-    .join('');
 }
 
 function setupCopyButton() {

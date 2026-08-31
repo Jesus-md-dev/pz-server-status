@@ -23,11 +23,6 @@ const DISK = {
   usedGB: 28.7,
   maxGB: 40,
   checkedAt: '31 ago 2026',
-  breakdown: [
-    ['Mods de Steam Workshop', '28.1 GB'],
-    ['Partida guardada', '0.6 GB'],
-    ['Configuración, logs y base de datos', '< 1 MB'],
-  ],
 };
 
 // Ordenados alfabéticamente por nombre para mostrar.
