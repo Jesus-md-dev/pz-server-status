@@ -35,6 +35,20 @@
       </div>
 
       <input class="mods-search" type="search" id="modsSearch" placeholder="Buscar un mod…" aria-label="Buscar un mod">
+
+      <div class="mods-filters" id="modsFilters" role="group" aria-label="Filtrar por categoría"></div>
+
+      <div class="mods-toolbar">
+        <span class="mods-result-count" id="modsResultCount"></span>
+        <label class="mods-sort-label">
+          Ordenar por
+          <select class="mods-sort" id="modsSort">
+            <option value="name">Nombre (A-Z)</option>
+            <option value="size-desc">Tamaño (mayor primero)</option>
+            <option value="size-asc">Tamaño (menor primero)</option>
+          </select>
+        </label>
+      </div>
     </div>
 
     <div class="mods-grid" id="modsGrid"></div>
