@@ -13,13 +13,8 @@ function renderStaticContent() {
     ROSTER.map((name) => `<li>${name}</li>`).join('');
 
   document.getElementById('modsSummary').textContent = `Mods (${MODS.length})`;
-  document.getElementById('modsList').innerHTML = MODS.map((mod) => `
-    <li>
-      <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=${mod.id}" target="_blank" rel="noopener">
-        <span>${mod.name}</span><code>${mod.id}</code>
-      </a>
-    </li>
-  `).join('');
+  document.getElementById('modsCtaText').textContent =
+    `${MODS.length} mods instalados, con imagen y descripción de cada uno.`;
 
   document.getElementById('configGroups').innerHTML = CONFIG_GROUPS.map((group) => `
     <div class="config-group">

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mods - Server Poxillo</title>
+<meta name="description" content="Lista completa de mods instalados en Server Poxillo, el servidor de Project Zomboid: imagen, nombre y descripción de cada uno.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pz-server-status.netlify.app/mods.html">
+
+<meta property="og:title" content="Mods - Server Poxillo">
+<meta property="og:description" content="Lista completa de mods instalados en Server Poxillo, el servidor de Project Zomboid.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pz-server-status.netlify.app/mods.html">
+<meta property="og:image" content="https://pz-server-status.netlify.app/spiffo.png">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="Server Poxillo">
+
+<link rel="icon" type="image/png" href="/spiffo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Staatliches&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/mods.css">
+</head>
+<body class="mods-body">
+  <div class="mods-page">
+    <a class="back-link" href="/">← Volver al estado del servidor</a>
+
+    <div class="mods-header">
+      <span class="badge">Project Zomboid</span>
+      <h1>Mods del servidor</h1>
+      <p class="desc" id="modsCount">Cargando lista de mods…</p>
+    </div>
+
+    <input class="mods-search" type="search" id="modsSearch" placeholder="Buscar un mod…" aria-label="Buscar un mod">
+
+    <div class="mods-grid" id="modsGrid"></div>
+    <p class="mods-empty" id="modsEmpty" hidden>Ningún mod coincide con tu búsqueda.</p>
+
+    <footer>Alojado en <a href="https://supercraft.host" target="_blank" rel="noopener">supercraft.host</a></footer>
+  </div>
+
+<script src="/data.js"></script>
+<script src="/mods.js"></script>
+</body>
+</html>

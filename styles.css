@@ -361,48 +361,12 @@ h1 {
   font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: 0.72rem;
 }
-.mods-list {
-  list-style: none;
-  padding-left: 0;
-  max-height: 260px;
-  overflow-y: auto;
+.mods-cta-text {
+  margin: 0 0 0.75rem;
 }
-.mods-list li {
-  border-top: 1px solid var(--inner-border);
-  font-size: 0.78rem;
-}
-.mods-list li:first-child {
-  border-top: none;
-}
-.mods-list li a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  padding: 0.4rem 0.3rem;
-  margin: 0 -0.3rem;
-  border-radius: 4px;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.15s ease;
-}
-.mods-list li a:hover {
-  background: rgba(224, 112, 63, 0.08);
-}
-.mods-list li a:hover span {
-  color: var(--accent);
-}
-.mods-list li span {
-  color: var(--text);
-  transition: color 0.15s ease;
-}
-.mods-list li code {
-  font-size: 0.68rem;
-  color: var(--muted);
-  background: var(--tag-bg);
-  padding: 0.08rem 0.35rem;
-  border-radius: 3px;
-  white-space: nowrap;
+.mods-cta-btn {
+  display: inline-flex;
+  width: auto;
 }
 
 .actions {
