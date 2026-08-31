@@ -361,13 +361,35 @@ h1 {
   font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: 0.72rem;
 }
-.mods-cta-text {
-  margin: 0 0 0.75rem;
+.mods-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.5rem 0.6rem;
+  margin-left: -0.6rem;
+  margin-right: -0.6rem;
+  width: calc(100% + 1.2rem);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.15s ease;
 }
-.mods-cta-btn {
-  display: inline-flex;
-  width: auto;
+.mods-link:hover { background: rgba(224, 112, 63, 0.08); }
+.mods-link #modsSummary {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.15s ease;
 }
+.mods-link:hover #modsSummary { color: var(--text); }
+.mods-link-arrow {
+  color: var(--accent);
+  font-weight: 700;
+  transition: transform 0.15s ease;
+}
+.mods-link:hover .mods-link-arrow { transform: translateX(3px); }
 
 .actions {
   margin-top: 1.5rem;
