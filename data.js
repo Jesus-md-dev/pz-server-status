@@ -20,7 +20,7 @@ const ROSTER = [
 // para el disco del hosting). Actualizar cuando cambien mucho los mods o
 // crezca bastante la partida guardada.
 const DISK = {
-  usedGB: 28.7,
+  usedGB: 19.4,
   maxGB: 40,
   checkedAt: '31 ago 2026',
 };
@@ -77,7 +77,6 @@ const MODS = [
   { name: 'True Moozic: Metal', id: '3663486520', img: 'https://images.steamusercontent.com/ugc/9614609509254118192/BE24001970B8319BBA102F634622E8AB4BF609B5/', desc: '189 canciones de metal para True Moozic.', sizeMB: 1661.8, category: 'Musica' },
   { name: 'True Moozic: MINORTH', id: '3636235926', img: 'https://images.steamusercontent.com/ugc/13658237021660299990/3B39F3D6B09A4CBA5B8C46936BB28276B2CAFAC4/', desc: 'Pack de canciones de Minor Threat para True Moozic.', sizeMB: 12.2, category: 'Musica' },
   { name: 'True Moozic: Mixtape Megapack', id: '3633882960', img: 'https://images.steamusercontent.com/ugc/11933835928042381782/8EADD35AFF95EE8F0C36E6588CED36825DBC2F42/', desc: 'Más de 100 mixtapes variadas para True Moozic.', sizeMB: 1114.1, category: 'Musica' },
-  { name: 'True Moozic: O.G. Jampack', id: '3633774715', img: 'https://images.steamusercontent.com/ugc/12583299124979045713/E5FA02CDE83009B7D8C57D65A3AA7931DFD8B5A5/', desc: 'Pack enorme de 1249 canciones para True Moozic.', sizeMB: 3889.9, category: 'Musica' },
   { name: 'True Moozic: Official CD Collection', id: '3686548791', img: 'https://images.steamusercontent.com/ugc/9785408110266652791/F306FF9994B285B95D753B4382C9F3E16017875F/', desc: 'CDs de artistas como Metallica, Korn y Slipknot para True Moozic.', sizeMB: 251.5, category: 'Musica' },
   { name: 'True Moozic: Pink Floyd Vinyl', id: '3659009768', img: 'https://images.steamusercontent.com/ugc/13825233572065578238/2D2E39A96BF80F0328A55C272E5703366F6BEE50/', desc: 'Vinilo de The Dark Side of the Moon para True Moozic.', sizeMB: 18.4, category: 'Musica' },
   { name: 'True Moozic: Pop Culture', id: '3662973331', img: 'https://images.steamusercontent.com/ugc/13085398812993214071/115DB5F23C159ABDBC1F2546F4C19D1C6D061E70/', desc: '438 canciones populares de la época para True Moozic.', sizeMB: 1582.2, category: 'Musica' },
@@ -88,7 +87,6 @@ const MODS = [
   { name: 'True Moozic: Video Game Mixtapes', id: '3673701089', img: 'https://images.steamusercontent.com/ugc/10101961085395841058/C31C85EEC7F6C96257CB381336074233D60DEDD8/', desc: '59 mixtapes con bandas sonoras de videojuegos.', sizeMB: 672.1, category: 'Musica' },
   { name: 'True Moozic: Vinyl Collection', id: '3668406327', img: 'https://images.steamusercontent.com/ugc/10206888183140904648/D3B0C2EA86C6B48617EA46414075120971B8A1A2/', desc: 'Colección de vinilos clásicos (ABBA, Aerosmith, CCR...) para True Moozic.', sizeMB: 2783.5, category: 'Musica' },
   { name: 'True Moozic: Weird Al Yankovic', id: '3662592543', img: 'https://images.steamusercontent.com/ugc/13225857315840734548/A65131D8F00AF70D16EE7FB9FBCE02279B830DA8/', desc: 'Pack de canciones de Weird Al Yankovic para True Moozic.', sizeMB: 112.4, category: 'Musica' },
-  { name: 'True Music Addon 1909-1993 Collection', id: '3634635950', img: 'https://images.steamusercontent.com/ugc/14335612484148498413/264554FFD1613330D4ABD5AA8F58B76F24727FED/', desc: '1563 canciones históricas de 1909 a 1993, de todos los géneros.', sizeMB: 5602.9, category: 'Musica' },
   { name: 'TrueMoozic Made in Spain', id: '3715920784', img: 'https://images.steamusercontent.com/ugc/9379193028934776586/491DF24EFF6E751E8E08539E7EE857F0582C8463/', desc: 'Pack de música española clásica para True Moozic.', sizeMB: 318.4, category: 'Musica' },
   { name: 'Vanilla Vehicles Animated', id: '3281755175', img: 'https://images.steamusercontent.com/ugc/2520408817783418351/C71EDD49607F87F26C3C5959011CE3126F513B1A/', desc: 'Añade animaciones a los vehículos vanilla del juego.', sizeMB: 67.9, category: 'Vehiculos' },
   { name: 'Video Game Consoles', id: '2831786301', img: 'https://images.steamusercontent.com/ugc/56957406872548552/16BF3625E6DBE27E9732769A35409A30807E15ED/', desc: 'Consolas retro jugables: Game Boy, NES, SNES, Genesis y más.', sizeMB: 6.7, category: 'Ocio' },
