@@ -25,15 +25,17 @@
 </head>
 <body class="mods-body">
   <div class="mods-page">
-    <a class="back-link" href="/">← Volver al estado del servidor</a>
+    <div class="mods-hero">
+      <a class="back-link" href="/">← Volver al estado del servidor</a>
 
-    <div class="mods-header">
-      <span class="badge">Project Zomboid</span>
-      <h1>Mods del servidor</h1>
-      <p class="desc" id="modsCount">Cargando lista de mods…</p>
+      <div class="mods-header">
+        <span class="badge">Project Zomboid</span>
+        <h1>Mods del servidor</h1>
+        <p class="desc" id="modsCount">Cargando lista de mods…</p>
+      </div>
+
+      <input class="mods-search" type="search" id="modsSearch" placeholder="Buscar un mod…" aria-label="Buscar un mod">
     </div>
-
-    <input class="mods-search" type="search" id="modsSearch" placeholder="Buscar un mod…" aria-label="Buscar un mod">
 
     <div class="mods-grid" id="modsGrid"></div>
     <p class="mods-empty" id="modsEmpty" hidden>Ningún mod coincide con tu búsqueda.</p>

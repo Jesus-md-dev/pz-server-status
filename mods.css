@@ -12,6 +12,15 @@
   text-align: left;
 }
 
+.mods-hero {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem 1.75rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -47,7 +56,7 @@
   display: block;
   width: 100%;
   max-width: 420px;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   padding: 0.65rem 0.9rem;
   font-family: inherit;
   font-size: 0.88rem;
